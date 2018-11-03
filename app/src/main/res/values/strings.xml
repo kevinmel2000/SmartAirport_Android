@@ -1,0 +1,103 @@
+<resources>
+    <string name="app_name">Smart Airport BIJB Kertajati</string>
+    <string name="title_activity_smart_airport">Smart Airport BIJB Kertajati</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+
+    <string name="title_activity_flight_info">Flight Info</string>
+    <string name="title_activity_airport_facilities">Airport Faciities</string>
+
+
+    <!--DEBUG-->
+    <string name="debug_tag">BIJB DEBUG</string>
+
+    <!--API URL-->
+    <string name="url_marker">http://192.168.3.5/smartairport/assets/map_marker/</string>
+    <string name="url_airlines_logo">http://192.168.3.5/smartairport/assets/airlines_logo/</string>
+    <string name="api">http://192.168.3.5/smartairport/index.php/api/</string>
+    <string name="slash">/</string>
+    <!--API ROUTES-->
+    <string name="endpoint_get_routes">routes/get_routes/</string>
+    <!--API FLIGHT SCHEDULE / FLIGHT INFO-->
+    <string name="endpoint_status_today">schedule/status_today/</string>
+    <!--API translate-->
+    <string name="endpoint_translate">translation/</string>
+    <!--API facilities-->
+    <string name="endpoint_get_facilities">facilities/get_list/</string>
+
+    <!--REQUEST TAG-->
+    <string name="tag_req_flight_info">REQ_FLIGHT_INFO</string>
+    <string name="tag_req_translate">REQ_FLIGHT_INFO</string>
+    <string name="tag_req_airport_facilities">REQ_AIRPORT_FACILITIES</string>
+
+
+    <!--PROGRESS DIALOG-->
+    <string name="progress_loading">Loading . . .</string>
+
+    <!--JSON KEY-->
+    <string name="json_key_severity">severity</string>
+    <string name="json_key_content">content</string>
+
+    <!--SCHEDULE-->
+    <string name="json_key_schedules">schedules</string>
+    <string name="json_key_schedule_id">schedule_id</string>
+    <string name="route_id">route_id</string>
+    <string name="airlines_id">airlines_id</string>
+    <string name="airlines">airlines</string>
+    <string name="airlines_icon">airlines_icon</string>
+    <string name="flight_no">flight_no</string>
+    <string name="origin_id">origin_id</string>
+    <string name="origin_name">origin_name</string>
+    <string name="origin_iata">origin_iata</string>
+    <string name="origin_icao">origin_icao</string>
+    <string name="destination_id">destination_id</string>
+    <string name="destination_name">destination_name</string>
+    <string name="destination_iata">destination_iata</string>
+    <string name="destination_icao">destination_icao</string>
+    <string name="flight_schedule">flight_schedule</string>
+    <string name="flight_duration_minutes">flight_duration_minutes</string>
+    <string name="transit">transit</string>
+    <string name="transit_name">transit_name</string>
+    <string name="transit_iata">transit_iata</string>
+    <string name="transit_icao">transit_icao</string>
+    <string name="flight_status">flight_status</string>
+
+    <!--SEVERITY-->
+    <string name="json_key_facilities">facilities</string>
+    <string name="facility_id">id</string>
+    <string name="facility_name">name</string>
+    <string name="facility_latitude">latitude</string>
+    <string name="facility_longitude">longitude</string>
+    <string name="facility_location">location</string>
+    <string name="facility_description">description</string>
+    <string name="facility_image">image</string>
+    <string name="facility_marker">marker</string>
+
+    <!--SEVERITY-->
+    <string name="success">success</string>
+    <!--<string name="success">success</string>-->
+
+
+    <!--IMAGE-->
+    <string name="image_dir">/SMART_AIRPORT_BIJB</string>
+    <string name="image_selector_title">Opsi Lampiran</string>
+    <string name="image_selector_gallery">Buka galeri</string>
+    <string name="image_selector_camera">Buka kamera</string>
+    <string name="image_ext_jpg">.jpg</string>
+    <string name="image_mime_jpg">image/jpeg</string>
+    <string name="image_camera_data">data</string>
+
+    <string name="toast_save_image_success">Gambar tersimpan ke folder</string>
+    <string name="toast_save_image_failed">Gambar gagal disimpan</string>
+</resources>
