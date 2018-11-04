@@ -23,9 +23,9 @@
     <string name="debug_tag">BIJB DEBUG</string>
 
     <!--API URL-->
-    <string name="url_marker">http://192.168.3.5/smartairport/assets/map_marker/</string>
-    <string name="url_airlines_logo">http://192.168.3.5/smartairport/assets/airlines_logo/</string>
-    <string name="api">http://192.168.3.5/smartairport/index.php/api/</string>
+    <string name="url_marker">http://192.168.0.8/smartairport/assets/map_marker/</string>
+    <string name="url_airlines_logo">http://192.168.0.8/smartairport/assets/airlines_logo/</string>
+    <string name="api">http://192.168.0.8/smartairport/index.php/api/</string>
     <string name="slash">/</string>
     <!--API ROUTES-->
     <string name="endpoint_get_routes">routes/get_routes/</string>

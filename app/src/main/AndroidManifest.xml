@@ -51,6 +51,10 @@
             android:name=".AirportFacilities"
             android:label="@string/title_activity_airport_facilities"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".PhoneDir"
+            android:theme="@style/AppTheme"
+            android:turnScreenOn="true"/>
     </application>
 
 </manifest>
