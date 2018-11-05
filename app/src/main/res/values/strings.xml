@@ -28,19 +28,25 @@
     <string name="api">http://192.168.0.8/smartairport/index.php/api/</string>
     <string name="slash">/</string>
     <!--API ROUTES-->
-    <string name="endpoint_get_routes">routes/get_routes/</string>
+    <string name="endpoint_get_routes">route/get_routes/</string>
     <!--API FLIGHT SCHEDULE / FLIGHT INFO-->
     <string name="endpoint_status_today">schedule/status_today/</string>
     <!--API translate-->
     <string name="endpoint_translate">translation/</string>
     <!--API facilities-->
     <string name="endpoint_get_facilities">facilities/get_list/</string>
+    <!--API phone dir-->
+    <string name="endpoint_get_phone_dir">phone/get_list/</string>
+    <!--API airport list-->
+    <string name="endpoint_get_airport">airport/get_list/</string>
 
     <!--REQUEST TAG-->
+    <string name="tag_req_route">REQ_ROUTE</string>
     <string name="tag_req_flight_info">REQ_FLIGHT_INFO</string>
     <string name="tag_req_translate">REQ_FLIGHT_INFO</string>
     <string name="tag_req_airport_facilities">REQ_AIRPORT_FACILITIES</string>
-
+    <string name="tag_req_phone_dir">REQ_PHONE_DIR</string>
+    <string name="tag_req_airport_list">REQ_AIRPORT_LIST</string>
 
     <!--PROGRESS DIALOG-->
     <string name="progress_loading">Loading . . .</string>
@@ -73,7 +79,7 @@
     <string name="transit_icao">transit_icao</string>
     <string name="flight_status">flight_status</string>
 
-    <!--SEVERITY-->
+    <!--facility-->
     <string name="json_key_facilities">facilities</string>
     <string name="facility_id">id</string>
     <string name="facility_name">name</string>
@@ -84,6 +90,44 @@
     <string name="facility_image">image</string>
     <string name="facility_marker">marker</string>
 
+    <!--Phone dir-->
+    <string name="json_key_phone_dir">phones</string>
+    <string name="phone_id">id</string>
+    <string name="phone_name">name</string>
+    <string name="phone_no">phone</string>
+    <string name="phone_image">image</string>
+
+    <!--aiport-->
+    <string name="json_key_airport">airport</string>
+    <string name="airport_id">id</string>
+    <string name="airport_name">name</string>
+    <string name="airport_address">address</string>
+    <string name="airport_iata">iata</string>
+    <string name="airport_icao">icao</string>
+
+    <!--Route-->
+    <string name="json_key_routes">routes</string>
+    <string name="route_route_id">id</string>
+    <string name="route_airlines_id">airlines_id</string>
+    <string name="route_flight_no">flight_no</string>
+    <string name="route_airlines">airlines</string>
+    <string name="route_origin_id">origin_id</string>
+    <string name="route_origin_name">origin_name</string>
+    <string name="route_origin_iata">origin_iata</string>
+    <string name="route_origin_icao">origin_icao</string>
+    <string name="route_destination_id">destination_id</string>
+    <string name="route_destination_name">destination_name</string>
+    <string name="route_destination_iata">destination_iata</string>
+    <string name="route_destination_icao">destination_icao</string>
+    <string name="route_flight_schedule">flight_schedule</string>
+    <string name="route_flight_duration_minutes">flight_duration_minutes</string>
+    <string name="route_transit">transit</string>
+    <string name="route_transit_name">transit_name</string>
+    <string name="route_transit_iata">transit_iata</string>
+    <string name="route_transit_icao">transit_icao</string>
+    
+    
+    
     <!--SEVERITY-->
     <string name="success">success</string>
     <!--<string name="success">success</string>-->

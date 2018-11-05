@@ -91,6 +91,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_book_flight"
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
                     android:background="#FFFFFF"
@@ -253,6 +254,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_phone_dir"
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
                     android:background="#FFFFFF"

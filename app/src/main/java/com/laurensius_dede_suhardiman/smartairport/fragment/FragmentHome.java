@@ -11,15 +11,19 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.laurensius_dede_suhardiman.smartairport.AirportFacilities;
+import com.laurensius_dede_suhardiman.smartairport.BookFlight;
 import com.laurensius_dede_suhardiman.smartairport.FlightInfo;
+import com.laurensius_dede_suhardiman.smartairport.PhoneDir;
 import com.laurensius_dede_suhardiman.smartairport.R;
 import com.laurensius_dede_suhardiman.smartairport.SmartTranslate;
 
 public class FragmentHome extends Fragment {
 
     private LinearLayout llFlightInfo;
+    private LinearLayout llBookFlight;
     private LinearLayout llTranslatorTool;
     private LinearLayout llAirportFacilities;
+    private LinearLayout llPhoneDir;
 
 
     public FragmentHome() {}
@@ -34,8 +38,10 @@ public class FragmentHome extends Fragment {
                              Bundle savedInstanceState) {
         View inflaterHome = inflater.inflate(R.layout.fragment_home, container, false);
         llFlightInfo = (LinearLayout)inflaterHome.findViewById(R.id.ll_flight_info);
+        llBookFlight = (LinearLayout)inflaterHome.findViewById(R.id.ll_book_flight);
         llTranslatorTool = (LinearLayout)inflaterHome.findViewById(R.id.ll_translator_tool);
         llAirportFacilities = (LinearLayout)inflaterHome.findViewById(R.id.ll_airport_facilities);
+        llPhoneDir = (LinearLayout)inflaterHome.findViewById(R.id.ll_phone_dir);
         return inflaterHome;
     }
 
@@ -45,6 +51,14 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(),FlightInfo.class);
+                startActivity(i);
+            }
+        });
+
+        llBookFlight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),BookFlight.class);
                 startActivity(i);
             }
         });
@@ -61,6 +75,14 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(),SmartTranslate.class);
+                startActivity(i);
+            }
+        });
+
+        llPhoneDir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),PhoneDir.class);
                 startActivity(i);
             }
         });
