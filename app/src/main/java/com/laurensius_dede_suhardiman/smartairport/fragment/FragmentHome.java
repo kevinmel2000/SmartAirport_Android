@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import com.laurensius_dede_suhardiman.smartairport.AirportFacilities;
 import com.laurensius_dede_suhardiman.smartairport.BookFlight;
 import com.laurensius_dede_suhardiman.smartairport.FlightInfo;
+import com.laurensius_dede_suhardiman.smartairport.Parking;
 import com.laurensius_dede_suhardiman.smartairport.PhoneDir;
 import com.laurensius_dede_suhardiman.smartairport.R;
 import com.laurensius_dede_suhardiman.smartairport.SmartTranslate;
@@ -24,6 +25,7 @@ public class FragmentHome extends Fragment {
     private LinearLayout llTranslatorTool;
     private LinearLayout llAirportFacilities;
     private LinearLayout llPhoneDir;
+    private LinearLayout llParking;
 
 
     public FragmentHome() {}
@@ -42,6 +44,7 @@ public class FragmentHome extends Fragment {
         llTranslatorTool = (LinearLayout)inflaterHome.findViewById(R.id.ll_translator_tool);
         llAirportFacilities = (LinearLayout)inflaterHome.findViewById(R.id.ll_airport_facilities);
         llPhoneDir = (LinearLayout)inflaterHome.findViewById(R.id.ll_phone_dir);
+        llParking = (LinearLayout)inflaterHome.findViewById(R.id.ll_parking);
         return inflaterHome;
     }
 
@@ -83,6 +86,14 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(),PhoneDir.class);
+                startActivity(i);
+            }
+        });
+
+        llParking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),Parking.class);
                 startActivity(i);
             }
         });

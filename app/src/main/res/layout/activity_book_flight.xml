@@ -8,11 +8,18 @@
     <LinearLayout
         android:id="@+id/ll_search_box"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
         android:background="#FFFFFF"
         android:padding="16dp"
         android:orientation="vertical">
+        <ImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/icon_book_a_flight"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +40,7 @@
             android:id="@+id/sp_destination"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="16dp"
             android:padding="5dp" />
         <Button
             android:id="@+id/btn_search"
@@ -41,21 +48,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:textColor="#FFFFFF"
-            android:text="SEARCH ROUTE"/>
+            android:text="SEARCH"/>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_book_flight"
-            android:visibility="visible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </android.support.v7.widget.RecyclerView>
-
-    </LinearLayout>
-
-
 
 </LinearLayout>

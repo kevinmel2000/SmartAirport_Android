@@ -1,10 +1,9 @@
 package com.laurensius_dede_suhardiman.smartairport;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,10 +16,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.laurensius_dede_suhardiman.smartairport.adapter.RouteAdapter;
 import com.laurensius_dede_suhardiman.smartairport.appcontroller.AppController;
 import com.laurensius_dede_suhardiman.smartairport.model.Airport;
-import com.laurensius_dede_suhardiman.smartairport.model.Route;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,15 +29,11 @@ import java.util.Random;
 
 public class BookFlight extends AppCompatActivity {
 
-    RecyclerView.LayoutManager mLayoutManager;
-    List<Route> listRoute= new ArrayList<>();
-    List<Airport> listAirport = new ArrayList<>();
-    private RecyclerView rvBookFlight;
-    private RouteAdapter routeAdapter= null;
     private Spinner spOrigin,spDestination;
+    List<Airport> listAirport = new ArrayList<>();
     private Button btnSearch;
-    private String origin_id ;
-    private String destination_id;
+
+    private String origin_id, destination_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,23 +49,12 @@ public class BookFlight extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestRoute(origin_id,destination_id);
+                Intent i = new Intent(BookFlight.this,RouteResult.class);
+                i.putExtra("origin_id",origin_id);
+                i.putExtra("destination_id",destination_id);
+                startActivity(i);
             }
         });
-
-
-        rvBookFlight = (RecyclerView)findViewById(R.id.rv_book_flight);
-        rvBookFlight.setAdapter(null);
-        rvBookFlight.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(BookFlight.this);
-        rvBookFlight.setLayoutManager(mLayoutManager);
-        routeAdapter= new RouteAdapter(listRoute);
-        routeAdapter.notifyDataSetChanged();
-        rvBookFlight.setAdapter(routeAdapter);
-
-
-//
-//        requestRoute();
     }
 
 
@@ -167,77 +149,7 @@ public class BookFlight extends AppCompatActivity {
         });
     }
 
-    public void requestRoute(String origin,String destination){
-        Random random = new Random();
-        int rnd = random.nextInt(999999 - 99) + 99;
-        String tag_req_route= getResources().getString(R.string.tag_req_route);
-        String url = getResources().getString(R.string.api)
-                .concat(getResources().getString(R.string.endpoint_get_routes))
-                .concat(origin)
-                .concat(getResources().getString(R.string.slash))
-                .concat(destination)
-                .concat(getResources().getString(R.string.slash))
-                .concat(String.valueOf(rnd))
-                .concat(getResources().getString(R.string.slash));
-        final ProgressDialog pDialog = new ProgressDialog(this);
-        pDialog.setMessage(getResources().getString(R.string.progress_loading));
-        pDialog.show();
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        pDialog.dismiss();
-                        Log.d(getResources().getString(R.string.debug_tag),response.toString());
-                        parseData(response);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        pDialog.dismiss();
-                    }
-                });
-        AppController.getInstance().addToRequestQueue(jsonObjReq, tag_req_route);
-    }
-//
-    public void parseData(JSONObject responseJsonObj){
-        Log.d(getResources().getString(R.string.debug_tag),responseJsonObj.toString());
-        try{
-            String severity = responseJsonObj.getString(getResources().getString(R.string.json_key_severity));
-            JSONObject content = responseJsonObj.getJSONObject(getResources().getString(R.string.json_key_content));
-            if(severity.equals(getResources().getString(R.string.success))){
-                JSONArray jsonArrayRoute = content.getJSONArray(getResources().getString(R.string.json_key_routes));
-                if(jsonArrayRoute.length() > 0){
-                    for(int x=0;x<jsonArrayRoute.length();x++){
-                        JSONObject objRoute = jsonArrayRoute.getJSONObject(x);
-                        listRoute.add(new Route(
-                                objRoute.getString(getResources().getString(R.string.route_route_id)),
-                                objRoute.getString(getResources().getString(R.string.route_airlines_id)),
-                                objRoute.getString(getResources().getString(R.string.route_flight_no)),
-                                objRoute.getString(getResources().getString(R.string.route_airlines)),
-                                objRoute.getString(getResources().getString(R.string.route_origin_id)),
-                                objRoute.getString(getResources().getString(R.string.route_origin_name)),
-                                objRoute.getString(getResources().getString(R.string.route_origin_iata)),
-                                objRoute.getString(getResources().getString(R.string.route_origin_icao)),
-                                objRoute.getString(getResources().getString(R.string.route_destination_id)),
-                                objRoute.getString(getResources().getString(R.string.route_destination_name)),
-                                objRoute.getString(getResources().getString(R.string.route_destination_iata)),
-                                objRoute.getString(getResources().getString(R.string.route_destination_icao)),
-                                objRoute.getString(getResources().getString(R.string.route_flight_schedule)),
-                                objRoute.getString(getResources().getString(R.string.route_flight_duration_minutes)),
-                                objRoute.getString(getResources().getString(R.string.route_transit)),
-                                objRoute.getString(getResources().getString(R.string.route_transit_name)),
-                                objRoute.getString(getResources().getString(R.string.route_transit_iata)),
-                                objRoute.getString(getResources().getString(R.string.route_transit_icao))
-                        ));
-                    }
-                }
-            }
-        }catch (JSONException e){
 
-        }
-        routeAdapter.notifyDataSetChanged();
-    }
 
 
 }

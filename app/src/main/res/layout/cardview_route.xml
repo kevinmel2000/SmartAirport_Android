@@ -30,8 +30,9 @@
                         android:id="@+id/tv_origin_iata_icao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textAlignment="center"
                         android:text="IATA - ICAO"
-                        android:textSize="8pt"
+                        android:textSize="16pt"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"/>
                 </LinearLayout>
@@ -113,8 +114,9 @@
                         android:id="@+id/tv_destination_iata_icao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textAlignment="center"
                         android:text="IATA - ICAO"
-                        android:textSize="8pt"
+                        android:textSize="16pt"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"/>
                 </LinearLayout>

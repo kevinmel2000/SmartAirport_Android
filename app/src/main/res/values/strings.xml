@@ -39,6 +39,8 @@
     <string name="endpoint_get_phone_dir">phone/get_list/</string>
     <!--API airport list-->
     <string name="endpoint_get_airport">airport/get_list/</string>
+    <!--API parking list-->
+    <string name="endpoint_get_parking_area">parking/get_list/</string>
 
     <!--REQUEST TAG-->
     <string name="tag_req_route">REQ_ROUTE</string>
@@ -47,6 +49,7 @@
     <string name="tag_req_airport_facilities">REQ_AIRPORT_FACILITIES</string>
     <string name="tag_req_phone_dir">REQ_PHONE_DIR</string>
     <string name="tag_req_airport_list">REQ_AIRPORT_LIST</string>
+    <string name="tag_req_parking_area_list">REQ_PARKING_AREA_LIST</string>
 
     <!--PROGRESS DIALOG-->
     <string name="progress_loading">Loading . . .</string>
@@ -125,9 +128,18 @@
     <string name="route_transit_name">transit_name</string>
     <string name="route_transit_iata">transit_iata</string>
     <string name="route_transit_icao">transit_icao</string>
-    
-    
-    
+
+    <!--Parking Area-->
+    <string name="json_key_parking">parking</string>
+    <string name="parking_parking_id">id</string>
+    <string name="parking_name">name</string>
+    <string name="parking_description">description</string>
+    <string name="parking_status_car">status_car</string>
+    <string name="parking_status_motorcycle">status_motorcycle</string>
+    <string name="parking_latitude">latitude</string>
+    <string name="parking_longitude">longitude</string>
+
+
     <!--SEVERITY-->
     <string name="success">success</string>
     <!--<string name="success">success</string>-->

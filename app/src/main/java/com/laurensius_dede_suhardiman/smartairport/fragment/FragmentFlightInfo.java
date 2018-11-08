@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class FragmentFlightInfo extends Fragment {
 
@@ -86,9 +87,12 @@ public class FragmentFlightInfo extends Fragment {
 
 
     public void requestFlightInfo(){
+        Random random = new Random();
+        int rnd = random.nextInt(999999 - 99) + 99;
         String tag_req_flight_info = getResources().getString(R.string.tag_req_flight_info);
         String url = getResources().getString(R.string.api)
                 .concat(getResources().getString(R.string.endpoint_status_today))
+                .concat(String.valueOf(rnd))
                 .concat(getResources().getString(R.string.slash));
         final ProgressDialog pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage(getResources().getString(R.string.progress_loading));
