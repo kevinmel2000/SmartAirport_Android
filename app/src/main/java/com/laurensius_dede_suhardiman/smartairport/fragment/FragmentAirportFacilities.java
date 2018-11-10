@@ -231,7 +231,6 @@ public class FragmentAirportFacilities extends Fragment {
                 Log.d("Volley image error ","ERROR");
             }
         });
-
         facilityMarker.setPosition(new GeoPoint(lat, lon));
         facilityMarker.setTitle(name);
         facilityMarker.setSnippet(description);

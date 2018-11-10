@@ -41,6 +41,8 @@
     <string name="endpoint_get_airport">airport/get_list/</string>
     <!--API parking list-->
     <string name="endpoint_get_parking_area">parking/get_list/</string>
+    <!--API parking list-->
+    <string name="endpoint_get_tourism">tourism/get_list/</string>
 
     <!--REQUEST TAG-->
     <string name="tag_req_route">REQ_ROUTE</string>
@@ -50,6 +52,7 @@
     <string name="tag_req_phone_dir">REQ_PHONE_DIR</string>
     <string name="tag_req_airport_list">REQ_AIRPORT_LIST</string>
     <string name="tag_req_parking_area_list">REQ_PARKING_AREA_LIST</string>
+    <string name="tag_req_tourism_list">REQ_TOURISM_LIST</string>
 
     <!--PROGRESS DIALOG-->
     <string name="progress_loading">Loading . . .</string>
@@ -139,6 +142,19 @@
     <string name="parking_latitude">latitude</string>
     <string name="parking_longitude">longitude</string>
 
+    <!--Tourism Area-->
+    <string name="json_key_tourism">tourism</string>
+    <string name="tourism_tourism_id">id</string>
+    <string name="tourism_name">name</string>
+    <string name="tourism_city_district">city_district</string>
+    <string name="tourism_latitude">latitude</string>
+    <string name="tourism_longitude">longitude</string>
+    <string name="tourism_description">description</string>
+    <string name="tourism_category">category</string>
+    <string name="tourism_address">address</string>
+    <string name="tourism_phone">phone</string>
+    <string name="tourism_image">image</string>
+
 
     <!--SEVERITY-->
     <string name="success">success</string>
@@ -156,4 +172,7 @@
 
     <string name="toast_save_image_success">Gambar tersimpan ke folder</string>
     <string name="toast_save_image_failed">Gambar gagal disimpan</string>
+
+    <string name="provider_gps">gps</string>
+
 </resources>

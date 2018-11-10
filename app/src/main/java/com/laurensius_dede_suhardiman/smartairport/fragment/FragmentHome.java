@@ -17,6 +17,7 @@ import com.laurensius_dede_suhardiman.smartairport.Parking;
 import com.laurensius_dede_suhardiman.smartairport.PhoneDir;
 import com.laurensius_dede_suhardiman.smartairport.R;
 import com.laurensius_dede_suhardiman.smartairport.SmartTranslate;
+import com.laurensius_dede_suhardiman.smartairport.TourismAttraction;
 
 public class FragmentHome extends Fragment {
 
@@ -26,6 +27,7 @@ public class FragmentHome extends Fragment {
     private LinearLayout llAirportFacilities;
     private LinearLayout llPhoneDir;
     private LinearLayout llParking;
+    private LinearLayout llTourismAttraction;
 
 
     public FragmentHome() {}
@@ -45,6 +47,7 @@ public class FragmentHome extends Fragment {
         llAirportFacilities = (LinearLayout)inflaterHome.findViewById(R.id.ll_airport_facilities);
         llPhoneDir = (LinearLayout)inflaterHome.findViewById(R.id.ll_phone_dir);
         llParking = (LinearLayout)inflaterHome.findViewById(R.id.ll_parking);
+        llTourismAttraction = (LinearLayout)inflaterHome.findViewById(R.id.ll_tourism_attraction);
         return inflaterHome;
     }
 
@@ -94,6 +97,14 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(),Parking.class);
+                startActivity(i);
+            }
+        });
+
+        llTourismAttraction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),TourismAttraction.class);
                 startActivity(i);
             }
         });

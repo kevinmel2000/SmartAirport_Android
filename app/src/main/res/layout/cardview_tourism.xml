@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_tourism"
+        android:layout_width="match_parent"
+        android:background="#EEEEEE"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="200dp"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:background="#EEEEEE"
+                android:padding="5dp"
+                android:src="@mipmap/image_top"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:padding="5dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tourism name"
+                    android:textSize="8pt"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_city_district"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Location : Location Name"
+                    android:textSize="6pt"/>
+
+                <TextView
+                    android:id="@+id/tv_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Category : Category name"
+                    android:textSize="6pt"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
