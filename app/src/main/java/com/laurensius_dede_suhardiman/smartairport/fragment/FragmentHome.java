@@ -2,6 +2,7 @@ package com.laurensius_dede_suhardiman.smartairport.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.laurensius_dede_suhardiman.smartairport.AirportFacilities;
 import com.laurensius_dede_suhardiman.smartairport.BookFlight;
+import com.laurensius_dede_suhardiman.smartairport.EntertainmentArea;
 import com.laurensius_dede_suhardiman.smartairport.FlightInfo;
 import com.laurensius_dede_suhardiman.smartairport.Parking;
 import com.laurensius_dede_suhardiman.smartairport.PhoneDir;
@@ -28,6 +30,8 @@ public class FragmentHome extends Fragment {
     private LinearLayout llPhoneDir;
     private LinearLayout llParking;
     private LinearLayout llTourismAttraction;
+    private LinearLayout llEntertainment;
+    private LinearLayout llBIJBNews;
 
 
     public FragmentHome() {}
@@ -48,6 +52,8 @@ public class FragmentHome extends Fragment {
         llPhoneDir = (LinearLayout)inflaterHome.findViewById(R.id.ll_phone_dir);
         llParking = (LinearLayout)inflaterHome.findViewById(R.id.ll_parking);
         llTourismAttraction = (LinearLayout)inflaterHome.findViewById(R.id.ll_tourism_attraction);
+        llEntertainment = (LinearLayout)inflaterHome.findViewById(R.id.ll_entertainment);
+        llBIJBNews =(LinearLayout)inflaterHome.findViewById(R.id.ll_bijb_news);
         return inflaterHome;
     }
 
@@ -105,6 +111,23 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(),TourismAttraction.class);
+                startActivity(i);
+            }
+        });
+
+        llEntertainment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),EntertainmentArea.class);
+                startActivity(i);
+            }
+        });
+
+        llBIJBNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(getResources().getString(R.string.url_bijb_news)));
                 startActivity(i);
             }
         });

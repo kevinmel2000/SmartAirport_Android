@@ -1,6 +1,7 @@
 package com.laurensius_dede_suhardiman.smartairport.adapter;
 
 import android.content.Context;
+import android.icu.text.SimpleDateFormat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,7 +17,10 @@ import com.laurensius_dede_suhardiman.smartairport.R;
 import com.laurensius_dede_suhardiman.smartairport.appcontroller.AppController;
 import com.laurensius_dede_suhardiman.smartairport.model.Schedule;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
+
 
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.HolderSchedule> {
     List<Schedule> listSchedule;

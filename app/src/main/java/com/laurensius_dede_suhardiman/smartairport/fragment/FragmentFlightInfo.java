@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -31,12 +33,15 @@ import java.util.Random;
 
 public class FragmentFlightInfo extends Fragment {
 
+    private LinearLayout llError;
     private RecyclerView rvFlightInfo;
     private ScheduleAdapter scheduleAdapter = null;
     RecyclerView.LayoutManager mLayoutManager;
     List<Schedule> listSchedule = new ArrayList<>();
 
+
     int origin_destination;
+
     public FragmentFlightInfo() {}
 
 
@@ -57,6 +62,7 @@ public class FragmentFlightInfo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View inflaterFlightInfo = inflater.inflate(R.layout.fragment_flight_info, container, false);
+        llError = (LinearLayout) inflaterFlightInfo.findViewById(R.id.ll_error);
         rvFlightInfo = (RecyclerView)inflaterFlightInfo.findViewById(R.id.rv_flight_info);
         return inflaterFlightInfo;
     }
@@ -64,6 +70,16 @@ public class FragmentFlightInfo extends Fragment {
 
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
+        llError.setVisibility(View.GONE);
+        rvFlightInfo.setVisibility(View.VISIBLE);
+
+        llError.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestFlightInfo();
+            }
+        });
+
         origin_destination = getArguments().getInt("section_number");
         rvFlightInfo.setAdapter(null);
         rvFlightInfo.setHasFixedSize(true);
@@ -101,6 +117,8 @@ public class FragmentFlightInfo extends Fragment {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        llError.setVisibility(View.GONE);
+                        rvFlightInfo.setVisibility(View.VISIBLE);
                         pDialog.dismiss();
                         Log.d(getResources().getString(R.string.debug_tag),response.toString());
                         parseData(response,origin_destination);
@@ -109,6 +127,8 @@ public class FragmentFlightInfo extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        llError.setVisibility(View.VISIBLE);
+                        rvFlightInfo.setVisibility(View.GONE);
                         pDialog.dismiss();
 //                        FlightInfo.responseJsonObj = null;
                     }
@@ -183,12 +203,21 @@ public class FragmentFlightInfo extends Fragment {
                                 ));
                             }
                         }
-
+                    }else {
+                        llError.setVisibility(View.VISIBLE);
+                        rvFlightInfo.setVisibility(View.GONE);
                     }
+                }else{
+                    llError.setVisibility(View.VISIBLE);
+                    rvFlightInfo.setVisibility(View.GONE);
                 }
+            }else {
+                llError.setVisibility(View.VISIBLE);
+                rvFlightInfo.setVisibility(View.GONE);
             }
         }catch (JSONException e){
-
+            llError.setVisibility(View.VISIBLE);
+            rvFlightInfo.setVisibility(View.GONE);
         }
         scheduleAdapter.notifyDataSetChanged();
     }
