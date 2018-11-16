@@ -5,20 +5,42 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_whoops">Whooops . . . !</string>
+    <string name="label_reload">Something went wrong. Try again later or click here to reload</string>
+    <string name="label_flight_no">Flight No.</string>
+    <string name="label_schedule">Schedule</string>
+    <string name="label_airline">Airline</string>
 
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
+    <string name="tab_departure">Departure</string>
+    <string name="tab_arrival">Arrival</string>
+
+
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
+    <string-array name="language">
+        <item>Auto</item>
+        <item>Sunda</item>
+        <item>Indonesia</item>
+        <item>English</item>
+        <item>France</item>
+        <item>Spanyol</item>
+    </string-array>
+
+    <string-array name="language_code">
+        <item>auto</item>
+        <item>su</item>
+        <item>id</item>
+        <item>en</item>
+        <item>fr</item>
+        <item>es</item>
+    </string-array>
+
 
     <string name="title_activity_flight_info">Flight Info</string>
     <string name="title_activity_airport_facilities">Airport Faciities</string>
-
+    <string name="title_activity_transportation_guide">Transportation Guide</string>
 
     <!--DEBUG-->
     <string name="debug_tag">BIJB DEBUG</string>
@@ -47,6 +69,12 @@
     <string name="endpoint_get_tourism">tourism/get_list/</string>
     <!--API entertainment list-->
     <string name="endpoint_get_entertainment">entertainment/get_list/</string>
+    <!--API entertainment list-->
+    <string name="endpoint_get_transportation_moda">transportation/get_by_moda/</string>
+    <!--API baggage detail-->
+    <string name="endpoint_get_baggage_detail">baggage/detail/</string>
+
+
     <!--REQUEST TAG-->
     <string name="tag_req_route">REQ_ROUTE</string>
     <string name="tag_req_flight_info">REQ_FLIGHT_INFO</string>
@@ -57,6 +85,8 @@
     <string name="tag_req_parking_area_list">REQ_PARKING_AREA_LIST</string>
     <string name="tag_req_tourism_list">REQ_TOURISM_LIST</string>
     <string name="tag_req_entertainment_list">REQ_ENTERTAINMENT_LIST</string>
+    <string name="tag_req_trasport_by_moda">REQ_TRANSPORT_BY_MODA</string>
+    <string name="tag_req_baggage_detail">REQ_BAGGAGE_DETAIL</string>
 
     <!--PROGRESS DIALOG-->
     <string name="progress_loading">Loading . . .</string>
@@ -166,6 +196,27 @@
     <string name="entertainment_video_title">video_title</string>
     <string name="entertainment_description">description</string>
     <string name="entertainment_yt_id">yt_id</string>
+
+    <!--Transportation-->
+    <string name="json_key_transportation">transportation</string>
+    <string name="transportation_transportation_id">id</string>
+    <string name="transportation_name">name</string>
+    <string name="transportation_moda">moda</string>
+    <string name="transportation_origin">origin</string>
+    <string name="transportation_destination">destination</string>
+    <string name="transportation_schedule">schedule</string>
+    <string name="transportation_ticket_price">ticket_price</string>
+    <string name="transportation_origin_lat">origin_lat</string>
+    <string name="transportation_origin_lon">origin_lon</string>
+    <string name="transportation_destination_lat">destination_lat</string>
+    <string name="transportation_destination_lon">destination_lon</string>
+
+    <!--baggage-->
+    <string name="json_key_baggage">baggage</string>
+    <string name="baggage_baggage_id">id</string>
+    <string name="baggage_code">baggage_code</string>
+    <string name="baggage_datetime">datetime</string>
+    <string name="baggage_status">status</string>
 
 
     <!--SEVERITY-->

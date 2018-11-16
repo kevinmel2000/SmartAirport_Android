@@ -1,6 +1,8 @@
 package com.laurensius_dede_suhardiman.smartairport.model;
 
-public class Route {
+import java.io.Serializable;
+
+public class Route implements Serializable {
 
     String route_id;
     String airlines_id;

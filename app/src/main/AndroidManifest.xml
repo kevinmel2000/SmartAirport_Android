@@ -71,8 +71,20 @@
         <activity
             android:name=".DirectionMap"
             android:theme="@style/AppTheme" />
-        <activity android:name=".EntertainmentArea"
+        <activity
+            android:name=".EntertainmentArea"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".TransportationGuide"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BaggageTracker"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ManualTranslation"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".BookingProcess"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

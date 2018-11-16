@@ -58,12 +58,10 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Holder
         holderSchedule.tvSchedule.setText(listSchedule.get(i).getFlight_schedule());
         holderSchedule.tvAirline.setText(listSchedule.get(i).getAirlines());
         if(this.origin_destination == 1){
-            holderSchedule.tvLabelOriginDestination.setText("Destination to");
             holderSchedule.tvOriginDestination.setText(listSchedule.get(i).getDestination_name());
             holderSchedule.tvIataIcao.setText(listSchedule.get(i).getDestination_iata().concat(" - ").concat(listSchedule.get(i).getDestination_icao()));
         }else
         if(this.origin_destination == 2){
-            holderSchedule.tvLabelOriginDestination.setText("Arrived from");
             holderSchedule.tvOriginDestination.setText(listSchedule.get(i).getOrigin_name());
             holderSchedule.tvIataIcao.setText(listSchedule.get(i).getOrigin_iata().concat(" - ").concat(listSchedule.get(i).getOrigin_icao()));
         }
@@ -96,7 +94,6 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Holder
             tvFlightNo = (TextView)itemView.findViewById(R.id.tv_flight_no);
             tvSchedule = (TextView)itemView.findViewById(R.id.tv_schedule);
             tvAirline = (TextView)itemView.findViewById(R.id.tv_airline);
-            tvLabelOriginDestination = (TextView)itemView.findViewById(R.id.tv_label_origin_destination);
             tvOriginDestination = (TextView)itemView.findViewById(R.id.tv_origin_destination);
             tvIataIcao = (TextView)itemView.findViewById(R.id.tv_iata_icao);
             tvStatus = (TextView)itemView.findViewById(R.id.tv_status);

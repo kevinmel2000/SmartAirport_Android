@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.laurensius_dede_suhardiman.smartairport.AirportFacilities;
+import com.laurensius_dede_suhardiman.smartairport.BaggageTracker;
 import com.laurensius_dede_suhardiman.smartairport.BookFlight;
 import com.laurensius_dede_suhardiman.smartairport.EntertainmentArea;
 import com.laurensius_dede_suhardiman.smartairport.FlightInfo;
@@ -20,6 +21,7 @@ import com.laurensius_dede_suhardiman.smartairport.PhoneDir;
 import com.laurensius_dede_suhardiman.smartairport.R;
 import com.laurensius_dede_suhardiman.smartairport.SmartTranslate;
 import com.laurensius_dede_suhardiman.smartairport.TourismAttraction;
+import com.laurensius_dede_suhardiman.smartairport.TransportationGuide;
 
 public class FragmentHome extends Fragment {
 
@@ -27,6 +29,8 @@ public class FragmentHome extends Fragment {
     private LinearLayout llBookFlight;
     private LinearLayout llTranslatorTool;
     private LinearLayout llAirportFacilities;
+    private LinearLayout llBaggageTracking;
+    private LinearLayout llTransportationGuide;
     private LinearLayout llPhoneDir;
     private LinearLayout llParking;
     private LinearLayout llTourismAttraction;
@@ -49,6 +53,8 @@ public class FragmentHome extends Fragment {
         llBookFlight = (LinearLayout)inflaterHome.findViewById(R.id.ll_book_flight);
         llTranslatorTool = (LinearLayout)inflaterHome.findViewById(R.id.ll_translator_tool);
         llAirportFacilities = (LinearLayout)inflaterHome.findViewById(R.id.ll_airport_facilities);
+        llBaggageTracking = (LinearLayout)inflaterHome.findViewById(R.id.ll_baggage_tracking);
+        llTransportationGuide = (LinearLayout)inflaterHome.findViewById(R.id.ll_transportation_guide);
         llPhoneDir = (LinearLayout)inflaterHome.findViewById(R.id.ll_phone_dir);
         llParking = (LinearLayout)inflaterHome.findViewById(R.id.ll_parking);
         llTourismAttraction = (LinearLayout)inflaterHome.findViewById(R.id.ll_tourism_attraction);
@@ -83,10 +89,27 @@ public class FragmentHome extends Fragment {
             }
         });
 
+        llTransportationGuide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),TransportationGuide.class);
+                startActivity(i);
+            }
+        });
+
         llTranslatorTool.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(),SmartTranslate.class);
+                startActivity(i);
+            }
+        });
+
+
+        llBaggageTracking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),BaggageTracker.class);
                 startActivity(i);
             }
         });

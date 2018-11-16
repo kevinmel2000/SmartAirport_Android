@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -31,12 +33,17 @@ public class RouteResult extends AppCompatActivity {
     List<Route> listRoute= new ArrayList<>();
     private RecyclerView rvRouteResult;
     private RouteAdapter routeAdapter= null;
+    private LinearLayout llError;
+    private LinearLayout llNoData;
     
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_result);
+
+        llError = (LinearLayout)findViewById(R.id.ll_error);
+        llNoData = (LinearLayout)findViewById(R.id.ll_no_data);
 
         rvRouteResult = (RecyclerView)findViewById(R.id.rv_route_result);
         rvRouteResult.setAdapter(null);
@@ -46,10 +53,21 @@ public class RouteResult extends AppCompatActivity {
         routeAdapter= new RouteAdapter(listRoute);
         routeAdapter.notifyDataSetChanged();
         rvRouteResult.setAdapter(routeAdapter);
+
+        llError.setVisibility(View.GONE);
+        llNoData.setVisibility(View.GONE);
+        rvRouteResult.setVisibility(View.VISIBLE);
         
         Intent i = getIntent();
-        String origin_id = i.getStringExtra("origin_id");
-        String destination_id = i.getStringExtra("destination_id");
+        final String origin_id = i.getStringExtra("origin_id");
+        final String destination_id = i.getStringExtra("destination_id");
+
+        llError.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestRoute(origin_id,destination_id);
+            }
+        });
 
         requestRoute(origin_id,destination_id);
     }
@@ -82,6 +100,9 @@ public class RouteResult extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         pDialog.dismiss();
+                        llError.setVisibility(View.VISIBLE);
+                        llNoData.setVisibility(View.GONE);
+                        rvRouteResult.setVisibility(View.GONE);
                     }
                 });
         AppController.getInstance().addToRequestQueue(jsonObjReq, tag_req_route);
@@ -118,10 +139,20 @@ public class RouteResult extends AppCompatActivity {
                                 objRoute.getString(getResources().getString(R.string.route_transit_icao))
                         ));
                     }
+                }else{
+                    llError.setVisibility(View.GONE);
+                    llNoData.setVisibility(View.VISIBLE);
+                    rvRouteResult.setVisibility(View.GONE);
                 }
+            }else{
+                llError.setVisibility(View.VISIBLE);
+                llNoData.setVisibility(View.GONE);
+                rvRouteResult.setVisibility(View.GONE);
             }
         }catch (JSONException e){
-
+            llError.setVisibility(View.VISIBLE);
+            llNoData.setVisibility(View.GONE);
+            rvRouteResult.setVisibility(View.GONE);
         }
         routeAdapter.notifyDataSetChanged();
     }

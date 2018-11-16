@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2196F3</color>
-    <color name="colorPrimaryDark">#1976D2</color>
-    <color name="colorAccent">#01579b</color>
+    <color name="colorPrimary">#0d46a0</color>
+    <color name="colorPrimaryDark">#002071</color>
+    <color name="colorAccent">#ffeb3b</color>
 
-    <color name="tab_background_selected">#01579b</color>
-    <color name="tab_background_unselected">#0157CC</color>
+    <color name="tab_background_selected">#004099</color>
+    <color name="tab_background_unselected">#0d46a0</color>
 
+    <color name="putih">#FFFFFF</color>
+    <color name="abu_c">#CCCCCC</color>
+    <color name="abu_e">#EEEEEE</color>
+    <color name="abu_6">#666666</color>
+    <color name="abu_9">#999999</color>
 
 </resources>

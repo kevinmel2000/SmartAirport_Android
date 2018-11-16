@@ -1,27 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/constraintLayout"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="@color/abu_c"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ManualTranslation">
 
     <LinearLayout
         android:id="@+id/ll_search_box"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
-        android:padding="16dp"
+        android:paddingBottom="90dp"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="48dp"
             android:layout_gravity="center"
-            android:src="@mipmap/icon_book_a_flight"/>
+            android:src="@mipmap/icon_translator"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Input text to translate"
+            android:textStyle="italic"/>
+
+        <EditText
+            android:id="@+id/et_resource"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:minLines="4"
+            android:maxLines="12"
+            android:padding="5dp"
+            android:gravity="top|left"
+            android:scrollbars="vertical"
+            android:background="@color/putih"
+            android:hint="Input your text to translate"
+            android:lines="10"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Result"
+            android:textStyle="italic"/>
+
+        <EditText
+            android:id="@+id/et_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:minLines="4"
+            android:maxLines="12"
+            android:padding="5dp"
+            android:gravity="top|left"
+            android:scrollbars="vertical"
+            android:background="@color/putih"
+            android:hint="Result"
+            android:lines="10"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,12 +85,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="Departure"
+                    android:text="Translate from"
                     android:textSize="7pt"
                     android:textStyle="italic"/>
             </LinearLayout>
             <Spinner
-                android:id="@+id/sp_origin"
+                android:id="@+id/sp_language_origin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -74,12 +117,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="Arrival"
+                    android:text="to"
                     android:textSize="7pt"
                     android:textStyle="italic"/>
             </LinearLayout>
             <Spinner
-                android:id="@+id/sp_destination"
+                android:id="@+id/sp_language_destination"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp" />
@@ -87,13 +130,13 @@
 
 
         <Button
-            android:id="@+id/btn_search"
+            android:id="@+id/btn_translate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:layout_marginTop="10dp"
             android:textColor="#FFFFFF"
-            android:text="SEARCH"/>
+            android:text="Translate"/>
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

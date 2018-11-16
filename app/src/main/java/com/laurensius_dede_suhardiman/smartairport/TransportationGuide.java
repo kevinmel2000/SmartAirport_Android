@@ -12,8 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.laurensius_dede_suhardiman.smartairport.fragment.FragmentAirportFacilities;
+import com.laurensius_dede_suhardiman.smartairport.fragment.FragmentTransportationGuide;
 
-public class AirportFacilities extends AppCompatActivity {
+public class TransportationGuide extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
@@ -22,12 +23,12 @@ public class AirportFacilities extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_airport_facilities);
+        setContentView(R.layout.activity_transportation_guide);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_airport_facilities));
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_transportation_guide));
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -38,24 +39,8 @@ public class AirportFacilities extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_facilities, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_search) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -66,12 +51,12 @@ public class AirportFacilities extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return FragmentAirportFacilities.newInstance(position + 1);
+            return FragmentTransportationGuide.newInstance(position + 1);
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 6;
         }
     }
 

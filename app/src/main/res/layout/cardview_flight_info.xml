@@ -25,19 +25,22 @@
                 android:orientation="vertical">
                 <ImageView
                     android:id="@+id/iv_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="96dp"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:scaleType="center"
+                    android:layout_marginBottom="10dp"
                     android:layout_gravity="center"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Flight No."
+                    android:textAlignment="center"
                     android:textStyle="italic"/>
                 <TextView
                     android:id="@+id/tv_flight_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:text="Flight No."
                     android:textSize="8pt"
                     android:textStyle="bold"
@@ -49,66 +52,99 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:orientation="vertical">
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Schedule / Estmate"
-                    android:textStyle="italic"/>
-                <TextView
-                    android:id="@+id/tv_schedule"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:src="@drawable/cv_icon_jam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"/>
+                    <TextView
+                        android:id="@+id/tv_schedule"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:text="Schedule"
+                        android:textSize="8pt"
+                       /> <!--android:textStyle="bold"/>-->
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Schedule"
-                    android:textSize="8pt"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="5dp"/>
-                <TextView
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:src="@drawable/cv_icon_airline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"/>
+                    <TextView
+                        android:id="@+id/tv_airline"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:text="Schedule"
+                        android:textSize="8pt"
+                       /> <!--android:textStyle="bold"/>-->
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Airline"
-                    android:textStyle="italic"/>
-                <TextView
-                    android:id="@+id/tv_airline"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:src="@drawable/cv_icon_marker_abu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingTop="5dp"
+                        android:layout_marginRight="5dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_origin_destination"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Origin / Destination Airport"
+                            android:textSize="8pt"
+                           /> <!--android:textStyle="bold"/>-->
+                        <TextView
+                            android:id="@+id/tv_iata_icao"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="IATA - ICAO"
+                            android:textSize="8pt"
+                           /> <!--android:textStyle="bold"/>-->
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Airline"
-                    android:textSize="8pt"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="5dp"/>
-                <TextView
-                    android:id="@+id/tv_label_origin_destination"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Origin / Destination"
-                    android:textStyle="italic"/>
-                <TextView
-                    android:id="@+id/tv_origin_destination"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Origin / Destination Airport"
-                    android:textSize="8pt"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/tv_iata_icao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="IATA - ICAO"
-                    android:textSize="8pt"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="5dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Status"
-                    android:textStyle="italic"/>
-                <TextView
-                    android:id="@+id/tv_status"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Status"
-                    android:textSize="8pt"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="5dp"/>
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:src="@drawable/cv_icon_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"/>
+                    <TextView
+                        android:id="@+id/tv_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Status"
+                        android:textSize="8pt"
+                       /> <!--android:textStyle="bold"/>-->
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
 

@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -48,10 +49,13 @@ import java.util.Random;
 
 public class FragmentAirportFacilities extends Fragment {
 
+    private LinearLayout llError, llSuccess;
+
     private RecyclerView rvFacilities;
     private FacilityAdapter facilityAdapter= null;
     RecyclerView.LayoutManager mLayoutManager;
     List<Facility> listFacilities = new ArrayList<>();
+
 
     private MapView mvFacilities = null;
     private ScaleBarOverlay mScaleBarOverlay;
@@ -83,6 +87,8 @@ public class FragmentAirportFacilities extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View inflaterFacilities = inflater.inflate(R.layout.fragment_airport_facilities, container, false);
+        llError = (LinearLayout) inflaterFacilities.findViewById(R.id.ll_error);
+        llSuccess = (LinearLayout) inflaterFacilities.findViewById(R.id.ll_success);
         rvFacilities = (RecyclerView)inflaterFacilities.findViewById(R.id.rv_airport_facilities);
         mvFacilities = (MapView)inflaterFacilities.findViewById(R.id.mv_facilities);
         return inflaterFacilities;
@@ -92,6 +98,9 @@ public class FragmentAirportFacilities extends Fragment {
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         list_map = getArguments().getInt("section_number");
+
+        llSuccess.setVisibility(View.VISIBLE);
+        llError.setVisibility(View.GONE);
 
         rvFacilities.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
@@ -203,6 +212,8 @@ public class FragmentAirportFacilities extends Fragment {
                 }
             }
         }catch (JSONException e){
+            llSuccess.setVisibility(View.VISIBLE);
+            llError.setVisibility(View.GONE);
             Log.d(getResources().getString(R.string.debug_tag),e.getMessage());
         }
         facilityAdapter.notifyDataSetChanged();

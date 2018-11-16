@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -35,7 +36,7 @@ public final class SmartTranslate extends AppCompatActivity {
     private SurfaceView svTranslate;
     private TextView tvPreview;
     private CameraSource cameraSource;
-    private Button btnGetText;
+    private Button btnGetText,btnManual;
     private Dialog dialBox;
 
     TextRecognizer textRecognizer;
@@ -53,6 +54,14 @@ public final class SmartTranslate extends AppCompatActivity {
             public void onClick(View v) {
                 String raw_text = tvPreview.getText().toString();
                 requestTranslate("auto","en",raw_text);
+            }
+        });
+        btnManual = (Button)findViewById(R.id.btn_manual);
+        btnManual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SmartTranslate.this, ManualTranslation.class);
+                startActivity(intent);
             }
         });
         startReadText();

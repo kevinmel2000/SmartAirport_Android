@@ -14,7 +14,9 @@ import com.laurensius_dede_suhardiman.smartairport.model.Facility;
 import com.laurensius_dede_suhardiman.smartairport.model.Route;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Random;
 
 public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.HolderRoute> {
     List<Route> listRoute;
@@ -32,13 +34,29 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.HolderRoute>
 
     @Override
     public void onBindViewHolder(HolderRoute holderRoute,int i){
-        holderRoute.tvOriginIataIcao.setText(listRoute.get(i).getOrigin_iata());
-        holderRoute.tvDestinationIataIcao.setText(listRoute.get(i).getDestination_iata());
-        holderRoute.tvSchedule.setText(listRoute.get(i).getFlight_schedule());
-        holderRoute.tvDuration.setText(listRoute.get(i).getFlight_duration_minutes());
-        holderRoute.tvOrigin.setText(listRoute.get(i).getOrigin_name());
-        holderRoute.tvDestination.setText(listRoute.get(i).getDestination_name());
+        holderRoute.tvOriginIataIcao.setText(listRoute.get(i).getOrigin_iata() + "\n(" + listRoute.get(i).getOrigin_icao() + ")");
+        holderRoute.tvDestinationIataIcao.setText(listRoute.get(i).getDestination_iata() + "\n(" + listRoute.get(i).getDestination_icao() + ")");
+        holderRoute.tvSchedule.setText("Flight Shedule : " + listRoute.get(i).getFlight_schedule());
+        holderRoute.tvDuration.setText("Duration : " + listRoute.get(i).getFlight_duration_minutes() + " minutes");
+        holderRoute.tvOrigin.setText("Departure : " + listRoute.get(i).getOrigin_name());
+        holderRoute.tvDestination.setText("Arrival : " + listRoute.get(i).getDestination_name());
         holderRoute.tvAirline.setText(listRoute.get(i).getAirlines());
+
+        Random random = new Random();
+        double rnd = 625500.00 + random.nextFloat() * (999000 - 625000);
+        double harga = rnd / 1000;
+
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        holderRoute.tvPrice.setText("IDR " + df.format(harga) + "K");
+
+        holderRoute.btnBookNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
     @Override
@@ -58,7 +76,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.HolderRoute>
     public static class HolderRoute extends  RecyclerView.ViewHolder{
         CardView cvRoute;
         TextView tvOriginIataIcao,tvDestinationIataIcao;
-        TextView tvSchedule,tvDuration,tvOrigin,tvDestination,tvAirline;
+        TextView tvSchedule,tvDuration,tvOrigin,tvDestination,tvAirline,tvPrice;
         Button btnBookNow;
 
         HolderRoute(View itemView){
@@ -71,6 +89,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.HolderRoute>
             tvOrigin = (TextView) itemView.findViewById(R.id.tv_origin);
             tvDestination = (TextView) itemView.findViewById(R.id.tv_destination);
             tvAirline = (TextView) itemView.findViewById(R.id.tv_airline);
+            tvPrice = (TextView)itemView.findViewById(R.id.tv_price);
             btnBookNow = (Button)itemView.findViewById(R.id.btn_book_now);
         }
     }

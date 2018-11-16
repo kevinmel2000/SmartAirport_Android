@@ -9,6 +9,7 @@
 
     <FrameLayout
         android:id="@+id/fl_master"
+        android:background="@color/abu_c"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
