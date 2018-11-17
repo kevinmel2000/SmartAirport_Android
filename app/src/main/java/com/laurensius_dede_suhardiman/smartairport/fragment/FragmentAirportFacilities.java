@@ -105,7 +105,7 @@ public class FragmentAirportFacilities extends Fragment {
         rvFacilities.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         rvFacilities.setLayoutManager(mLayoutManager);
-        facilityAdapter= new FacilityAdapter(listFacilities,list_map);
+        facilityAdapter= new FacilityAdapter(listFacilities,list_map,getActivity());
         facilityAdapter.notifyDataSetChanged();
         rvFacilities.setAdapter(facilityAdapter);
 
@@ -172,6 +172,8 @@ public class FragmentAirportFacilities extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         pDialog.dismiss();
+                        llSuccess.setVisibility(View.GONE);
+                        llError.setVisibility(View.VISIBLE);
                     }
                 });
         AppController.getInstance().addToRequestQueue(jsonObjReq, tag_req_airport_facilities);
@@ -209,11 +211,17 @@ public class FragmentAirportFacilities extends Fragment {
                         ));
 
                     }
+                }else{
+                    llSuccess.setVisibility(View.GONE);
+                    llError.setVisibility(View.VISIBLE);
                 }
+            }else{
+                llSuccess.setVisibility(View.GONE);
+                llError.setVisibility(View.VISIBLE);
             }
         }catch (JSONException e){
-            llSuccess.setVisibility(View.VISIBLE);
-            llError.setVisibility(View.GONE);
+            llSuccess.setVisibility(View.GONE);
+            llError.setVisibility(View.VISIBLE);
             Log.d(getResources().getString(R.string.debug_tag),e.getMessage());
         }
         facilityAdapter.notifyDataSetChanged();
@@ -240,6 +248,8 @@ public class FragmentAirportFacilities extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("Volley image error ","ERROR");
+                llSuccess.setVisibility(View.GONE);
+                llError.setVisibility(View.VISIBLE);
             }
         });
         facilityMarker.setPosition(new GeoPoint(lat, lon));

@@ -1,6 +1,22 @@
 <resources>
     <string name="app_name">Smart Airport BIJB Kertajati</string>
     <string name="title_activity_smart_airport">Smart Airport BIJB Kertajati</string>
+    <string name="title_activity_flight_info">Flight Info</string>
+    <string name="title_activity_search_flight">Search Flight</string>
+    <string name="title_activity_search_result">Result</string>
+    <string name="title_activity_booking">Booking</string>
+    <string name="title_activity_parking_guide">Parking Guide</string>
+    <string name="title_activity_baggage_tracker">Baggage Tracker</string>
+    <string name="title_activity_translate">Smart Translator</string>
+    <string name="title_activity_direction">Smart Direction</string>
+    <string name="title_activity_phone_dir">Phone Directory</string>
+    <string name="title_activity_manual_translate">Translator</string>
+    <string name="title_activity_tourism_guide">Tourism Guide</string>
+    <string name="title_activity_airport_facilities">Airport Faciities</string>
+    <string name="title_activity_entertainment">Entertainment</string>
+    <string name="title_activity_transportation_guide">Transportation Guide</string>
+
+
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -38,17 +54,15 @@
     </string-array>
 
 
-    <string name="title_activity_flight_info">Flight Info</string>
-    <string name="title_activity_airport_facilities">Airport Faciities</string>
-    <string name="title_activity_transportation_guide">Transportation Guide</string>
-
     <!--DEBUG-->
     <string name="debug_tag">BIJB DEBUG</string>
 
     <!--API URL-->
     <string name="url_bijb_news">https://bijb.co.id/category/bijb-update/</string>
     <string name="url_marker">http://192.168.0.8/smartairport/assets/map_marker/</string>
+    <string name="url_fac">http://192.168.0.8/smartairport/assets/facility_img/</string>
     <string name="url_airlines_logo">http://192.168.0.8/smartairport/assets/airlines_logo/</string>
+    <string name="url_tourism_img">http://192.168.0.8/smartairport/assets/tourism_img/</string>
     <string name="api">http://192.168.0.8/smartairport/index.php/api/</string>
     <string name="slash">/</string>
     <!--API ROUTES-->
@@ -73,6 +87,10 @@
     <string name="endpoint_get_transportation_moda">transportation/get_by_moda/</string>
     <!--API baggage detail-->
     <string name="endpoint_get_baggage_detail">baggage/detail/</string>
+    <!--API baggage detail-->
+    <string name="endpoint_booking">booking/insert/</string>
+    <!--API baggage detail-->
+    <string name="endpoint_signin">user/signin/</string>
 
 
     <!--REQUEST TAG-->
@@ -87,6 +105,8 @@
     <string name="tag_req_entertainment_list">REQ_ENTERTAINMENT_LIST</string>
     <string name="tag_req_trasport_by_moda">REQ_TRANSPORT_BY_MODA</string>
     <string name="tag_req_baggage_detail">REQ_BAGGAGE_DETAIL</string>
+    <string name="tag_req_booking">REQ_BOOKING</string>
+    <string name="tag_req_signin">REQ_SIGNIN</string>
 
     <!--PROGRESS DIALOG-->
     <string name="progress_loading">Loading . . .</string>
@@ -219,6 +239,9 @@
     <string name="baggage_status">status</string>
 
 
+    <!--Tourism Area-->
+    <string name="json_key_booking">booking</string>
+
     <!--SEVERITY-->
     <string name="success">success</string>
     <!--<string name="success">success</string>-->
@@ -236,5 +259,10 @@
     <string name="toast_save_image_failed">Gambar gagal disimpan</string>
 
     <string name="provider_gps">gps</string>
+
+    <string name="sharedpreferences">SHRPRFRN_BIJB</string>
+    <string name="sharedpref_user_email">email</string>
+    <string name="sharedpref_user_name">name</string>
+    <string name="sharedpref_user_phone">phone</string>
 
 </resources>

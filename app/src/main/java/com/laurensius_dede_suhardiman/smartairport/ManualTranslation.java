@@ -40,6 +40,9 @@ public class ManualTranslation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manual_translation);
+
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_manual_translate));
+
         array_language = getResources().getStringArray(R.array.language);
         array_language_code  = getResources().getStringArray(R.array.language_code);
         etResource = (EditText)findViewById(R.id.et_resource);

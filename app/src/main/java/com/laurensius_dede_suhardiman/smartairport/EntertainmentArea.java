@@ -37,6 +37,8 @@ public class EntertainmentArea extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entertainment);
 
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_entertainment));
+
         rvEntertainment = (RecyclerView)findViewById(R.id.rv_entertainment);
 
         rvEntertainment.setAdapter(null);

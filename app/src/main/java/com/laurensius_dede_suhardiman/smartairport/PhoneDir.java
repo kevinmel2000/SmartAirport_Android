@@ -43,6 +43,7 @@ public class PhoneDir extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_dir);
 
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_phone_dir));
         rvPhoneDirectory = (RecyclerView)findViewById(R.id.rv_phone_directory);
 
         rvPhoneDirectory.setAdapter(null);

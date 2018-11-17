@@ -1,5 +1,6 @@
 package com.laurensius_dede_suhardiman.smartairport.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,10 +18,12 @@ import java.util.List;
 public class FacilityAdapter extends RecyclerView.Adapter<FacilityAdapter.HolderFacility> {
     List<Facility> listFacility;
     int origin_destination;
+    Context ctx;
 
-    public FacilityAdapter(List<Facility> listFacility, int origin_destination){
+    public FacilityAdapter(List<Facility> listFacility, int origin_destination,Context ctx){
         this.listFacility = listFacility;
         this.origin_destination = origin_destination;
+        this.ctx = ctx;
     }
 
     @Override
@@ -32,7 +35,8 @@ public class FacilityAdapter extends RecyclerView.Adapter<FacilityAdapter.Holder
 
     @Override
     public void onBindViewHolder(HolderFacility holderFacility,int i){
-        Picasso.get().load(listFacility.get(i).getImage()).into(holderFacility.ivImage);
+        String url = ctx.getResources().getString(R.string.url_fac).concat(listFacility.get(i).getImage());
+        Picasso.get().load(url).into(holderFacility.ivImage);
         holderFacility.tvName.setText(listFacility.get(i).getName());
         holderFacility.tvDescription.setText(listFacility.get(i).getDescription());
         holderFacility.tvLocation.setText(listFacility.get(i).getLocation());

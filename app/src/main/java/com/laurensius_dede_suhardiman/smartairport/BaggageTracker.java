@@ -46,6 +46,9 @@ public class BaggageTracker extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baggage_tracker);
+
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_baggage_tracker));
+
         etBaggageCode = (EditText)findViewById(R.id.et_baggage_code);
         btnSearchBaggage = (Button) findViewById(R.id.btn_search_baggage);
 
@@ -68,7 +71,7 @@ public class BaggageTracker extends AppCompatActivity {
             }
         });
 
-        llNoData.setVisibility(View.GONE);
+        llError.setVisibility(View.GONE);
         llNoData.setVisibility(View.GONE);
         rvBaggageTracking.setVisibility(View.VISIBLE);
 

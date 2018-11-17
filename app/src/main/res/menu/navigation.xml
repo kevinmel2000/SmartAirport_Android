@@ -8,12 +8,12 @@
 
     <item
         android:id="@+id/navigation_about"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@mipmap/logo_bijb"
         android:title="About BIJB" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@mipmap/logo_bijb"
+        android:id="@+id/navigation_account"
+        android:icon="@android:drawable/star_big_on"
         android:title="Account" />
 
 </menu>

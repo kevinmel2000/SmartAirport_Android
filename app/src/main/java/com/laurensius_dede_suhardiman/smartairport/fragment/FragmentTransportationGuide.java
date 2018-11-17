@@ -105,7 +105,7 @@ public class FragmentTransportationGuide extends Fragment {
         rvTransportationGuide.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         rvTransportationGuide.setLayoutManager(mLayoutManager);
-        transportationAdapter= new TransportationAdapter(listTransportationGuide);
+        transportationAdapter= new TransportationAdapter(listTransportationGuide,getActivity());
         transportationAdapter.notifyDataSetChanged();
         rvTransportationGuide.setAdapter(transportationAdapter);
 

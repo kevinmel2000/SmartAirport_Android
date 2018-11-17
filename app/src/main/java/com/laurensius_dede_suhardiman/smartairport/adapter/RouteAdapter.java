@@ -1,5 +1,7 @@
 package com.laurensius_dede_suhardiman.smartairport.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.laurensius_dede_suhardiman.smartairport.BookingProcess;
 import com.laurensius_dede_suhardiman.smartairport.R;
 import com.laurensius_dede_suhardiman.smartairport.model.Facility;
 import com.laurensius_dede_suhardiman.smartairport.model.Route;
@@ -20,9 +23,11 @@ import java.util.Random;
 
 public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.HolderRoute> {
     List<Route> listRoute;
+    Context ctx;
 
-    public RouteAdapter(List<Route> listRoute){
+    public RouteAdapter(List<Route> listRoute, Context ctx){
         this.listRoute = listRoute;
+        this.ctx = ctx;
     }
 
     @Override
@@ -33,7 +38,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.HolderRoute>
     }
 
     @Override
-    public void onBindViewHolder(HolderRoute holderRoute,int i){
+    public void onBindViewHolder(HolderRoute holderRoute,final int i){
         holderRoute.tvOriginIataIcao.setText(listRoute.get(i).getOrigin_iata() + "\n(" + listRoute.get(i).getOrigin_icao() + ")");
         holderRoute.tvDestinationIataIcao.setText(listRoute.get(i).getDestination_iata() + "\n(" + listRoute.get(i).getDestination_icao() + ")");
         holderRoute.tvSchedule.setText("Flight Shedule : " + listRoute.get(i).getFlight_schedule());
@@ -44,16 +49,19 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.HolderRoute>
 
         Random random = new Random();
         double rnd = 625500.00 + random.nextFloat() * (999000 - 625000);
-        double harga = rnd / 1000;
+        final double harga = rnd / 1000;
 
-        DecimalFormat df = new DecimalFormat();
+        final DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
         holderRoute.tvPrice.setText("IDR " + df.format(harga) + "K");
 
         holderRoute.btnBookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(ctx,BookingProcess.class);
+                intent.putExtra("routeObject",listRoute.get(i));
+                intent.putExtra("price",String.valueOf(df.format(harga) ));
+                ctx.startActivity(intent);
             }
         });
 

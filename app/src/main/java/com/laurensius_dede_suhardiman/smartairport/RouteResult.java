@@ -42,6 +42,9 @@ public class RouteResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_result);
 
+
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_search_result));
+
         llError = (LinearLayout)findViewById(R.id.ll_error);
         llNoData = (LinearLayout)findViewById(R.id.ll_no_data);
 
@@ -50,7 +53,7 @@ public class RouteResult extends AppCompatActivity {
         rvRouteResult.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(RouteResult.this);
         rvRouteResult.setLayoutManager(mLayoutManager);
-        routeAdapter= new RouteAdapter(listRoute);
+        routeAdapter= new RouteAdapter(listRoute,RouteResult.this);
         routeAdapter.notifyDataSetChanged();
         rvRouteResult.setAdapter(routeAdapter);
 

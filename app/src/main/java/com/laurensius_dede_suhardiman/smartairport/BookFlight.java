@@ -1,8 +1,11 @@
 package com.laurensius_dede_suhardiman.smartairport;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -40,6 +43,9 @@ public class BookFlight extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_flight);
 
+
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_search_flight));
+
         spOrigin = (Spinner)findViewById(R.id.sp_origin);
         spDestination = (Spinner)findViewById(R.id.sp_destination);
         btnSearch = (Button)findViewById(R.id.btn_search);
@@ -49,10 +55,23 @@ public class BookFlight extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(BookFlight.this,RouteResult.class);
-                i.putExtra("origin_id",origin_id);
-                i.putExtra("destination_id",destination_id);
-                startActivity(i);
+                if(origin_id.equals(destination_id)){
+                    new AlertDialog.Builder(BookFlight.this)
+                            .setTitle("Notification")
+                            .setMessage("Departure and arrival cannot be the same airport")
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    spOrigin.requestFocus();
+                                }}).show().
+                            getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#3d9b2d"));
+
+                }else{
+                    Intent i = new Intent(BookFlight.this,RouteResult.class);
+                    i.putExtra("origin_id",origin_id);
+                    i.putExtra("destination_id",destination_id);
+                    startActivity(i);
+                }
             }
         });
     }
@@ -82,6 +101,16 @@ public class BookFlight extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         pDialog.dismiss();
+                        new AlertDialog.Builder(BookFlight.this)
+                                .setTitle("Whooops . . .")
+                                .setMessage("Something went wrong. Please try again!")
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        requestAirport();
+                                    }}).show().
+                                getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#3d9b2d"));
+
                     }
                 });
         AppController.getInstance().addToRequestQueue(jsonObjReq, tag_req_airport_list);

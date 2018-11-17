@@ -43,12 +43,16 @@ public class TourismAttraction extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tourism);
+
+
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_tourism_guide));
+
         rvTourism = (RecyclerView)findViewById(R.id.rv_tourism);
         rvTourism.setAdapter(null);
         rvTourism.setHasFixedSize(true);
 //        mLayoutManager = new LinearLayoutManager(TourismAttraction.this);
         rvTourism.setLayoutManager(new GridLayoutManager(this,2));
-        tourismAdapter= new TourismAdapter(listTourism);
+        tourismAdapter= new TourismAdapter(listTourism,TourismAttraction.this);
         tourismAdapter.notifyDataSetChanged();
         rvTourism.setAdapter(tourismAdapter);
         rvTourism.addOnItemTouchListener(new CustomListener(this, new CustomListener.OnItemClickListener() {

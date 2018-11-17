@@ -46,6 +46,8 @@ public final class SmartTranslate extends AppCompatActivity {
         super.onCreate(bundle);
         setContentView(R.layout.activity_smart_translate);
 
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_translate));
+
         svTranslate = (SurfaceView) findViewById(R.id.sv_translate);
         tvPreview = (TextView) findViewById(R.id.tv_preview);
         btnGetText = (Button)findViewById(R.id.btn_get_text);

@@ -85,15 +85,17 @@
                 android:weightSum="2"
                 android:orientation="horizontal">
                 <Button
+                    android:id="@+id/btn_direction"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_margin="5dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorAccent"
                     android:textColor="#FFFFFF"
                     android:text="Direction"/>
                 <Button
-                android:layout_width="0dp"
+                    android:id="@+id/btn_booking_parking"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_margin="5dp"

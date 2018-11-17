@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#EEEEEE"
+    android:background="#CCD5E2"
     android:orientation="vertical"
     tools:context=".BaggageTracker">
     <LinearLayout
@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#EEEEEE">
+        android:background="#CCD5E2">
         <LinearLayout
             android:id="@+id/ll_error"
             android:layout_width="match_parent"
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textSize="8pt"
-                android:text="No flight service from selected route"/>
+                android:text="Data not found"/>
         </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_baggage_tracker"

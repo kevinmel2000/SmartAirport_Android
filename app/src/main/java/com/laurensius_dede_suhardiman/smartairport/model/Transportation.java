@@ -1,6 +1,8 @@
 package com.laurensius_dede_suhardiman.smartairport.model;
 
-public class Transportation {
+import java.io.Serializable;
+
+public class Transportation implements Serializable {
 
     String id;
     String name;

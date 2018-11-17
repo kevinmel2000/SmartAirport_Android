@@ -36,11 +36,14 @@ public class Parking extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking);
+
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_parking_guide));
+
         rvParking = (RecyclerView)findViewById(R.id.rv_parking);
         rvParking.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(Parking.this);
         rvParking.setLayoutManager(mLayoutManager);
-        parkingAreaAdapter= new ParkingAreaAdapter(listParkingArea);
+        parkingAreaAdapter= new ParkingAreaAdapter(listParkingArea,Parking.this);
         parkingAreaAdapter.notifyDataSetChanged();
         rvParking.setAdapter(parkingAreaAdapter);
         requestParkingArea();

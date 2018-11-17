@@ -30,7 +30,7 @@
             android:value="ocr" />
 
         <activity
-            android:name=".SmartAirport"
+            android:name=".SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,7 +38,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SplashScreen" />
+        <activity
+            android:name=".SmartAirport"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BookFlight"
             android:theme="@style/AppTheme"
@@ -83,8 +85,11 @@
         <activity
             android:name=".ManualTranslation"
             android:theme="@style/AppTheme" />
-        <activity android:name=".BookingProcess"
-            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".BookingProcess"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".QRBookingView"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

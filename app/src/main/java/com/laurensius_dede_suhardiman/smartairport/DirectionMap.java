@@ -18,6 +18,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.laurensius_dede_suhardiman.smartairport.model.Facility;
+import com.laurensius_dede_suhardiman.smartairport.model.ParkingArea;
 import com.laurensius_dede_suhardiman.smartairport.model.Tourism;
 
 import org.osmdroid.api.IMapController;
@@ -55,12 +56,13 @@ public class DirectionMap extends AppCompatActivity {
     private Intent intent;
 
     private Tourism tourism;
-    private Parking parking;
+    private ParkingArea parking;
     private Facility facility;
 
     public static double lat;
     public static double lon;
 
+    String type = "";
 
     Marker destinationMarker, bijbMarker, userMarker;
 
@@ -70,6 +72,9 @@ public class DirectionMap extends AppCompatActivity {
         setContentView(R.layout.activity_direction_map);
         mvDirection = (MapView)findViewById(R.id.mv_direction);
         //map
+
+
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_direction));
 
         mvDirection.setTileSource(TileSourceFactory.MAPNIK);
         mvDirection.setBuiltInZoomControls(true);
@@ -121,14 +126,19 @@ public class DirectionMap extends AppCompatActivity {
 
     void intentCheck(){
         intent = getIntent();
-        String type = intent.getStringExtra("object_type");
-        if(type.equals("tourism")){
+        type = intent.getStringExtra("object_type");
+        if(type.equals("tourism") ==  true){
             tourism = (Tourism)intent.getSerializableExtra("destinationObject");
             setMapCenter(Double.valueOf(tourism.getLatitude()), Double.valueOf(tourism.getLongitude()));
             setDestionationMarker(Double.valueOf(tourism.getLatitude()), Double.valueOf(tourism.getLongitude()));
         }else
-        if(type.equals("facility")){
+        if(type.equals("facility") ==  true){
             facility = (Facility) intent.getSerializableExtra("destinationObject");
+        }else
+        if(type.equals("parking") ==  true){
+            parking = (ParkingArea) intent.getSerializableExtra("parkingObject");
+            setMapCenter(Double.valueOf(parking.getLatitude()), Double.valueOf(parking.getLongitude()));
+            setDestionationMarker(Double.valueOf(parking.getLatitude()), Double.valueOf(parking.getLongitude()));
         }
     }
 
@@ -168,6 +178,20 @@ public class DirectionMap extends AppCompatActivity {
         destinationMarker = new Marker(mvDirection);
         Drawable iconMarker = ResourcesCompat.getDrawable(getResources(), R.drawable.destination_marker, null);
         destinationMarker.setIcon(iconMarker);
+        if(type.equals("tourism")){
+            destinationMarker.setTitle(tourism.getName());
+            destinationMarker.setSnippet(tourism.getDescription());
+            destinationMarker.setSubDescription(tourism.getAddress());
+        }else
+        if(type.equals("facility")){
+            destinationMarker.setTitle(facility.getName());
+            destinationMarker.setSnippet(facility.getDescription());
+        }else
+        if(type.equals("parking")){
+            destinationMarker.setTitle(parking.getName());
+            destinationMarker.setSnippet("Car : " + parking.getStatus_car() + " # Motorcycle  : " + parking.getStatus_motorcycle() + "\n" );
+            destinationMarker.setSubDescription(parking.getDescription());
+        }
         destinationMarker.setPosition(new GeoPoint(lat, lon));
         destinationMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
             @Override
@@ -208,7 +232,16 @@ public class DirectionMap extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             startPoint = new GeoPoint(lat,lon);
-            endPoint = new GeoPoint(Double.valueOf(tourism.getLatitude()), Double.valueOf(tourism.getLongitude()));
+            if(type.equals("tourism")){
+                endPoint = new GeoPoint(Double.valueOf(tourism.getLatitude()), Double.valueOf(tourism.getLongitude()));
+            }else
+            if(type.equals("facility")){
+                endPoint = new GeoPoint(Double.valueOf(facility.getLatitude()), Double.valueOf(facility.getLongitude()));
+            }else
+            if(type.equals("parking")){
+                endPoint = new GeoPoint(Double.valueOf(parking.getLatitude()), Double.valueOf(parking.getLongitude()));
+            }
+
             waypoints.add(startPoint);
             waypoints.add(endPoint);
             super.onPreExecute();
