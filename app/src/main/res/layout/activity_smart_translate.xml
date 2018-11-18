@@ -20,13 +20,59 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="14dp"
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="143dp"
+        android:layout_marginBottom="240dp"
         android:text="No text"
         android:textColor="@android:color/white"
         android:textSize="7pt" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="210dp"
+        android:text="Select origin language and destination language :"
+        android:textColor="@android:color/white"
+        android:textSize="7pt" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="150dp"
+        android:padding="10dp"
+        android:weightSum="2"
+        android:background="@color/colorAccent"
+        android:textColor="#FFFFFF" >
+        <Spinner
+            android:id="@+id/sp_language_origin"
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@color/putih"
+            android:layout_height="wrap_content"></Spinner>
+        <Spinner
+            android:id="@+id/sp_language_destination"
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@color/putih"
+            android:layout_height="wrap_content"></Spinner>
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/btn_get_text"

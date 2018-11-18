@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -38,8 +39,9 @@ public class FragmentSignUp extends Fragment {
     SharedPreferences.Editor editorPreferences;
 
 
-    private EditText etEmail, etPassword;
-    private Button btnSignIn;
+    private EditText etEmail, etPassword, etName, etPhone;
+    private Button btnSignUp;
+    private TextView tvSignIn;
 
     public FragmentSignUp() {}
 
@@ -51,19 +53,34 @@ public class FragmentSignUp extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View inflaterSignIn = inflater.inflate(R.layout.fragment_signin, container, false);
-        etEmail = (EditText) inflaterSignIn.findViewById(R.id.et_email);
-        etPassword = (EditText) inflaterSignIn.findViewById(R.id.et_password);
-        btnSignIn = (Button) inflaterSignIn.findViewById(R.id.btn_signin);
-        return inflaterSignIn;
+        View inflaterSignUp = inflater.inflate(R.layout.fragment_signup, container, false);
+        etEmail = (EditText) inflaterSignUp.findViewById(R.id.et_email);
+        etPassword = (EditText) inflaterSignUp.findViewById(R.id.et_password);
+        etName = (EditText) inflaterSignUp.findViewById(R.id.et_name);
+        etPhone = (EditText) inflaterSignUp.findViewById(R.id.et_phone);
+        btnSignUp = (Button) inflaterSignUp.findViewById(R.id.btn_signup);
+        tvSignIn = (TextView) inflaterSignUp.findViewById(R.id.tv_signin);
+        
+        return inflaterSignUp;
     }
 
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 validateInput();
+            }
+        });
+
+        tvSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentSignIn signin = new FragmentSignIn();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fl_master,signin,null)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
     }
@@ -79,7 +96,8 @@ public class FragmentSignUp extends Fragment {
     }
 
     public void validateInput(){
-        if(etEmail.getText().toString().equals("") || etPassword.getText().toString().equals("")){
+        if(etEmail.getText().toString().equals("") || etPassword.getText().toString().equals("") ||
+                etName.getText().toString().equals("") || etPhone.getText().toString().equals("")){
             new AlertDialog.Builder(getActivity())
                     .setTitle("Whooops . . .")
                     .setMessage("Please fill the blank field")
@@ -91,11 +109,14 @@ public class FragmentSignUp extends Fragment {
                     getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#3d9b2d"));
 
         }else{
-            requestSignIn(etEmail.getText().toString(),etPassword.getText().toString());
+            requestSignUp(etEmail.getText().toString(),
+                    etPassword.getText().toString(),
+                    etName.getText().toString(),
+                    etPhone.getText().toString());
         }
     }
 
-    public void requestSignIn(String e,String p){
+    public void requestSignUp(String e,String p,String n, String ph){
         Random random = new Random();
         int rnd = random.nextInt(999999 - 99) + 99;
         String tag_req_signin = getResources().getString(R.string.tag_req_signin);
@@ -109,6 +130,8 @@ public class FragmentSignUp extends Fragment {
         final Map<String, String> params = new HashMap<String, String>();
         params.put("email", e);
         params.put("password", p);
+        params.put("name", n);
+        params.put("phone", ph);
         JSONObject parameter = new JSONObject(params);
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,url, parameter,
                 new Response.Listener<JSONObject>() {
@@ -122,13 +145,17 @@ public class FragmentSignUp extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        pDialog.dismiss(); new AlertDialog.Builder(getActivity())
+                        pDialog.dismiss();
+                        new AlertDialog.Builder(getActivity())
                                 .setTitle("Whooops . . .")
                                 .setMessage("Something went wrong. Please try again!")
                                 .setIcon(android.R.drawable.ic_dialog_alert)
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
-                                        requestSignIn(etEmail.getText().toString(),etPassword.getText().toString());
+                                        requestSignUp(etEmail.getText().toString(),
+                                                etPassword.getText().toString(),
+                                                etName.getText().toString(),
+                                                etPhone.getText().toString());
                                     }}).show().
                                         getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#3d9b2d"));
                     }
@@ -144,7 +171,7 @@ public class FragmentSignUp extends Fragment {
             JSONObject content = responseJsonObj.getJSONObject(getResources().getString(R.string.json_key_content));
             if(severity.equals(getResources().getString(R.string.success))){
                 new AlertDialog.Builder(getActivity())
-                        .setTitle("Booking Success")
+                        .setTitle("Signup Success")
                         .setMessage(responseJsonObj.getString("message"))
                         .setIcon(android.R.drawable.ic_menu_info_details)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -165,7 +192,7 @@ public class FragmentSignUp extends Fragment {
                 SmartAirport.user_phone = objUser.getString(getResources().getString(R.string.sharedpref_user_phone));
             }else{
                 new AlertDialog.Builder(getActivity())
-                        .setTitle("Booking Failed")
+                        .setTitle("Signup Failed")
                         .setMessage(responseJsonObj.getString("message"))
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -175,7 +202,15 @@ public class FragmentSignUp extends Fragment {
                         getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#3d9b2d"));
             }
         }catch (JSONException e){
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("Whooops . . .")
+                    .setMessage("Something went wrong. Please try again!")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
 
+                        }}).show().
+                    getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#3d9b2d"));
         }
     }
 }

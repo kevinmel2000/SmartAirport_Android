@@ -59,11 +59,11 @@
 
     <!--API URL-->
     <string name="url_bijb_news">https://bijb.co.id/category/bijb-update/</string>
-    <string name="url_marker">http://192.168.0.8/smartairport/assets/map_marker/</string>
-    <string name="url_fac">http://192.168.0.8/smartairport/assets/facility_img/</string>
-    <string name="url_airlines_logo">http://192.168.0.8/smartairport/assets/airlines_logo/</string>
-    <string name="url_tourism_img">http://192.168.0.8/smartairport/assets/tourism_img/</string>
-    <string name="api">http://192.168.0.8/smartairport/index.php/api/</string>
+    <string name="url_marker">http://bijbapp.laurensius-dede-suhardiman.com/assets/map_marker/</string>
+    <string name="url_fac">http://bijbapp.laurensius-dede-suhardiman.com/assets/facility_img/</string>
+    <string name="url_airlines_logo">http://bijbapp.laurensius-dede-suhardiman.com/assets/airlines_logo/</string>
+    <string name="url_tourism_img">http://bijbapp.laurensius-dede-suhardiman.com/assets/tourism_img/</string>
+    <string name="api">http://bijbapp.laurensius-dede-suhardiman.com/index.php/api/</string>
     <string name="slash">/</string>
     <!--API ROUTES-->
     <string name="endpoint_get_routes">route/get_routes/</string>
@@ -261,6 +261,7 @@
     <string name="provider_gps">gps</string>
 
     <string name="sharedpreferences">SHRPRFRN_BIJB</string>
+    <string name="sharedpref_user_id">id</string>
     <string name="sharedpref_user_email">email</string>
     <string name="sharedpref_user_name">name</string>
     <string name="sharedpref_user_phone">phone</string>

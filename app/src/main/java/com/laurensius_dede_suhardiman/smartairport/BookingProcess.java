@@ -148,6 +148,7 @@ public class BookingProcess extends AppCompatActivity {
         params.put("child", etChild.getText().toString());
         params.put("infant", etInfant.getText().toString());
         params.put("date", tanggal_pesan);
+        params.put("user_id", SmartAirport.user_id);
         JSONObject parameter = new JSONObject(params);
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,url, parameter,
                 new Response.Listener<JSONObject>() {
@@ -183,7 +184,7 @@ public class BookingProcess extends AppCompatActivity {
             JSONObject content = responseJsonObj.getJSONObject(getResources().getString(R.string.json_key_content));
             if(severity.equals(getResources().getString(R.string.success))){
                 new AlertDialog.Builder(BookingProcess.this)
-                        .setTitle("Booking Success")
+                        .setTitle("Booking Success! Please check your email for payment process!")
                         .setMessage(responseJsonObj.getString("message"))
                         .setIcon(android.R.drawable.ic_menu_info_details)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {

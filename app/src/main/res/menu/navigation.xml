@@ -10,6 +10,10 @@
         android:id="@+id/navigation_about"
         android:icon="@mipmap/logo_bijb"
         android:title="About BIJB" />
+    <item
+        android:id="@+id/navigation_notification"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="Notification" />
 
     <item
         android:id="@+id/navigation_account"

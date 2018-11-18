@@ -1,7 +1,10 @@
 package com.laurensius_dede_suhardiman.smartairport.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,8 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.laurensius_dede_suhardiman.smartairport.DirectionMap;
-import com.laurensius_dede_suhardiman.smartairport.QRBookingView;
+import com.laurensius_dede_suhardiman.smartairport.QRBookingGenerator;
 import com.laurensius_dede_suhardiman.smartairport.R;
+import com.laurensius_dede_suhardiman.smartairport.SmartAirport;
 import com.laurensius_dede_suhardiman.smartairport.model.ParkingArea;
 
 import java.util.List;
@@ -51,10 +55,24 @@ public class ParkingAreaAdapter extends RecyclerView.Adapter<ParkingAreaAdapter.
         holderParkingArea.btnBookingParking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ctx,QRBookingView.class);
-                intent.putExtra("object_type", "parking");
-                intent.putExtra("parkingObject", listParkingArea.get(i));
-                ctx.startActivity(intent);
+
+                if(SmartAirport.user_name != null){
+                    Intent intent = new Intent(ctx,QRBookingGenerator.class);
+                    intent.putExtra("object_type", "parking");
+                    intent.putExtra("parkingObject", listParkingArea.get(i));
+                    ctx.startActivity(intent);
+                }else{
+                    new AlertDialog.Builder(ctx)
+                            .setTitle("Whooops . . .")
+                            .setMessage("Please sigin before booking!")
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    dialog.dismiss();
+                                }}).show().
+                            getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#3d9b2d"));
+                }
+
             }
         });
     }

@@ -1,28 +1,32 @@
 package com.laurensius_dede_suhardiman.smartairport;
 
-import android.content.Intent;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.laurensius_dede_suhardiman.smartairport.fragment.FragmentAbout;
 import com.laurensius_dede_suhardiman.smartairport.fragment.FragmentAccount;
 import com.laurensius_dede_suhardiman.smartairport.fragment.FragmentHome;
-import com.laurensius_dede_suhardiman.smartairport.fragment.FragmentSignin;
+import com.laurensius_dede_suhardiman.smartairport.fragment.FragmentSignIn;
 
 public class SmartAirport extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editorPreferences;
 
-    public static String user_name,user_email,user_phone;
+    private Dialog dialBox;
+
+    public static String user_id,user_name,user_email,user_phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,7 @@ public class SmartAirport extends AppCompatActivity {
                         if(SmartAirport.user_name != null) {
                             selectedFragment = new FragmentAccount();
                         }else{
-                            selectedFragment = new FragmentSignin();
+                            selectedFragment = new FragmentSignIn();
                         }
                         break;
                 }
@@ -66,6 +70,8 @@ public class SmartAirport extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fl_master, new FragmentHome());
         transaction.commit();
+
+        dialBox = createDialogBox();
     }
 
     void loadSharedPreferences(){
@@ -74,6 +80,29 @@ public class SmartAirport extends AppCompatActivity {
         user_email = sharedPreferences.getString(getResources().getString(R.string.sharedpref_user_email),null);
         user_name = sharedPreferences.getString(getResources().getString(R.string.sharedpref_user_name),null);
         user_phone = sharedPreferences.getString(getResources().getString(R.string.sharedpref_user_phone),null);
+    }
+
+    @Override
+    public void onBackPressed() {
+        dialBox.show();
+    }
+
+    private Dialog createDialogBox(){
+        dialBox = new AlertDialog.Builder(this)
+                .setTitle("Confirm")
+                .setMessage("Are you want to exit?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialBox.dismiss();
+                    }
+                })
+                .create();
+        return dialBox;
     }
 
 }

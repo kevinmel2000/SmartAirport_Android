@@ -15,9 +15,11 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -33,11 +35,17 @@ import java.io.IOException;
 
 public final class SmartTranslate extends AppCompatActivity {
 
+    String[] array_language;
+    String[] array_language_code;
     private SurfaceView svTranslate;
     private TextView tvPreview;
     private CameraSource cameraSource;
     private Button btnGetText,btnManual;
     private Dialog dialBox;
+    private Spinner spLangOrig, spLangDest;
+
+    String selected_orig;
+    String selected_dest;
 
     TextRecognizer textRecognizer;
 
@@ -48,6 +56,12 @@ public final class SmartTranslate extends AppCompatActivity {
 
         getSupportActionBar().setTitle(getResources().getString(R.string.title_activity_translate));
 
+        array_language = getResources().getStringArray(R.array.language);
+        array_language_code  = getResources().getStringArray(R.array.language_code);
+        spLangOrig = (Spinner)findViewById(R.id.sp_language_origin);
+        spLangDest = (Spinner)findViewById(R.id.sp_language_destination);
+
+
         svTranslate = (SurfaceView) findViewById(R.id.sv_translate);
         tvPreview = (TextView) findViewById(R.id.tv_preview);
         btnGetText = (Button)findViewById(R.id.btn_get_text);
@@ -55,7 +69,7 @@ public final class SmartTranslate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String raw_text = tvPreview.getText().toString();
-                requestTranslate("auto","en",raw_text);
+                requestTranslate(selected_orig,selected_dest,raw_text);
             }
         });
         btnManual = (Button)findViewById(R.id.btn_manual);
@@ -67,6 +81,36 @@ public final class SmartTranslate extends AppCompatActivity {
             }
         });
         startReadText();
+
+        ArrayAdapter<String> langAdapter = new ArrayAdapter(
+                SmartTranslate.this,
+                R.layout.custom_spinner_item,array_language);
+        spLangOrig.setAdapter(langAdapter);
+        spLangDest.setAdapter(langAdapter);
+
+        spLangOrig.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selected_orig = array_language_code[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spLangDest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selected_dest = array_language_code[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override
@@ -154,28 +198,12 @@ public final class SmartTranslate extends AppCompatActivity {
         final ProgressDialog pDialog = new ProgressDialog(SmartTranslate.this);
         pDialog.setMessage(getResources().getString(R.string.progress_loading));
         pDialog.show();
-//        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,url, null,
-//                new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        pDialog.dismiss();
-//                        Log.d(getResources().getString(R.string.debug_tag),response.toString());
-//
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        pDialog.dismiss();
-//                    }
-//                });
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         pDialog.dismiss();
                         Log.d("Respon String ",response);
-                        Toast.makeText(SmartTranslate.this,response,Toast.LENGTH_LONG).show();
                         dialBox = translateResult(s,response);
                         dialBox.show();
                     }

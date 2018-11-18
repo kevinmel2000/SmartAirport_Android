@@ -1,21 +1,22 @@
 package com.laurensius_dede_suhardiman.smartairport.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.laurensius_dede_suhardiman.smartairport.BookingProcess;
 import com.laurensius_dede_suhardiman.smartairport.R;
-import com.laurensius_dede_suhardiman.smartairport.model.Facility;
+import com.laurensius_dede_suhardiman.smartairport.SmartAirport;
 import com.laurensius_dede_suhardiman.smartairport.model.Route;
-import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -58,10 +59,23 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.HolderRoute>
         holderRoute.btnBookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ctx,BookingProcess.class);
-                intent.putExtra("routeObject",listRoute.get(i));
-                intent.putExtra("price",String.valueOf(df.format(harga) ));
-                ctx.startActivity(intent);
+                if(SmartAirport.user_name != null){
+                    Intent intent = new Intent(ctx,BookingProcess.class);
+                    intent.putExtra("routeObject",listRoute.get(i));
+                    intent.putExtra("price",String.valueOf(df.format(harga) ));
+                    ctx.startActivity(intent);
+                }else{
+                    new AlertDialog.Builder(ctx)
+                            .setTitle("Whooops . . .")
+                            .setMessage("Please sigin before booking!")
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    dialog.dismiss();
+                                }}).show().
+                            getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#3d9b2d"));
+                }
+
             }
         });
 

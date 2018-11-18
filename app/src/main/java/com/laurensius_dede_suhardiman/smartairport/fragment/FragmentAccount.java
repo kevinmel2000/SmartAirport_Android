@@ -34,10 +34,6 @@ import java.util.Random;
 
 public class FragmentAccount extends Fragment {
 
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editorPreferences;
-
-
     private EditText etEmail, etName,etPhone;
     private Button btnSignOut;
 
@@ -74,6 +70,11 @@ public class FragmentAccount extends Fragment {
                 SmartAirport.user_email = null;
                 SmartAirport.user_name = null;
                 SmartAirport.user_phone = null;
+                FragmentSignIn signin = new FragmentSignIn();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fl_master,signin,null)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
     }

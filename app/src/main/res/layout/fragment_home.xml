@@ -50,9 +50,19 @@
                 android:textColor="#CCCCCC"
                 android:layout_gravity="bottom|end"
                 android:textStyle="bold"/>
-
         </LinearLayout>
         <!--End of Weather-->
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="User Name Here!"
+            android:textSize="10pt"
+            android:textStyle="italic"
+            android:textColor="@color/abu_9"
+            android:visibility="visible"/>
 
         <!--Menu Box-->
         <LinearLayout
@@ -372,7 +382,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_notification"
+                    android:id="@+id/ll_booking_list"
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
                     android:background="#EEEEEE"
@@ -386,11 +396,11 @@
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@mipmap/icon_notification"/>
+                        android:src="@mipmap/icon_bookinglist"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Notification"
+                        android:text="Booking List"
                         android:textColor="#666666"
                         android:textAlignment="center"
                         android:layout_marginTop="5dp"/>

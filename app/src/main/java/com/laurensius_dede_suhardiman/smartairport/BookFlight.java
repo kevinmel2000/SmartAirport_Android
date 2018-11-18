@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -154,7 +153,6 @@ public class BookFlight extends AppCompatActivity {
         spOrigin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(BookFlight.this,listAirport.get(position).getId(),Toast.LENGTH_LONG).show();
                 origin_id = listAirport.get(position).getId();
             }
 
@@ -167,7 +165,6 @@ public class BookFlight extends AppCompatActivity {
         spDestination.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(BookFlight.this,listAirport.get(position).getId(),Toast.LENGTH_LONG).show();
                 destination_id = listAirport.get(position).getId();
             }
 

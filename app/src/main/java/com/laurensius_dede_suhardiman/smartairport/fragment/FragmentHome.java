@@ -9,16 +9,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.laurensius_dede_suhardiman.smartairport.AirportFacilities;
 import com.laurensius_dede_suhardiman.smartairport.BaggageTracker;
 import com.laurensius_dede_suhardiman.smartairport.BookFlight;
+import com.laurensius_dede_suhardiman.smartairport.BookingList;
 import com.laurensius_dede_suhardiman.smartairport.EntertainmentArea;
 import com.laurensius_dede_suhardiman.smartairport.FlightInfo;
 import com.laurensius_dede_suhardiman.smartairport.Parking;
 import com.laurensius_dede_suhardiman.smartairport.PhoneDir;
 import com.laurensius_dede_suhardiman.smartairport.R;
+import com.laurensius_dede_suhardiman.smartairport.SmartAirport;
 import com.laurensius_dede_suhardiman.smartairport.SmartTranslate;
 import com.laurensius_dede_suhardiman.smartairport.TourismAttraction;
 import com.laurensius_dede_suhardiman.smartairport.TransportationGuide;
@@ -36,6 +40,9 @@ public class FragmentHome extends Fragment {
     private LinearLayout llTourismAttraction;
     private LinearLayout llEntertainment;
     private LinearLayout llBIJBNews;
+    private LinearLayout llBookingList;
+
+    private TextView tvName;
 
 
     public FragmentHome() {}
@@ -49,6 +56,7 @@ public class FragmentHome extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View inflaterHome = inflater.inflate(R.layout.fragment_home, container, false);
+        tvName = (TextView)inflaterHome.findViewById(R.id.tv_name);
         llFlightInfo = (LinearLayout)inflaterHome.findViewById(R.id.ll_flight_info);
         llBookFlight = (LinearLayout)inflaterHome.findViewById(R.id.ll_book_flight);
         llTranslatorTool = (LinearLayout)inflaterHome.findViewById(R.id.ll_translator_tool);
@@ -60,11 +68,22 @@ public class FragmentHome extends Fragment {
         llTourismAttraction = (LinearLayout)inflaterHome.findViewById(R.id.ll_tourism_attraction);
         llEntertainment = (LinearLayout)inflaterHome.findViewById(R.id.ll_entertainment);
         llBIJBNews =(LinearLayout)inflaterHome.findViewById(R.id.ll_bijb_news);
+        llBookingList =(LinearLayout)inflaterHome.findViewById(R.id.ll_booking_list);
         return inflaterHome;
     }
 
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
+
+        if(SmartAirport.user_name != null){
+            tvName.setVisibility(View.VISIBLE);
+            tvName.setText("Hello, " + SmartAirport.user_name + "!");
+        }else{
+            tvName.setVisibility(View.GONE);
+            tvName.setText("");
+        }
+
+
         llFlightInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,6 +170,14 @@ public class FragmentHome extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(getResources().getString(R.string.url_bijb_news)));
+                startActivity(i);
+            }
+        });
+
+        llBookingList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),BookingList.class);
                 startActivity(i);
             }
         });

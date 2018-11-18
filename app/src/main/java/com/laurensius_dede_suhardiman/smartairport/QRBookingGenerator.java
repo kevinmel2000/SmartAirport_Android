@@ -17,7 +17,7 @@ import com.laurensius_dede_suhardiman.smartairport.model.Transportation;
 
 import java.util.Calendar;
 
-public class QRBookingView extends AppCompatActivity {
+public class QRBookingGenerator extends AppCompatActivity {
 
     String QR_source = "";
     ImageView ivQR;
@@ -39,7 +39,14 @@ public class QRBookingView extends AppCompatActivity {
 
         Intent intent = getIntent();
         String type = intent.getStringExtra("object_type");
-        String bookcode = type.concat("_")
+        String regex = "";
+        if(type.equals("transportation")){
+            regex = "TR";
+        }else{
+            regex = "PR";
+        }
+        String bookcode = regex
+                .concat(SmartAirport.user_id)
                 .concat(String.valueOf(y))
                 .concat(String.valueOf(m))
                 .concat(String.valueOf(d))
@@ -66,6 +73,5 @@ public class QRBookingView extends AppCompatActivity {
         }catch (WriterException e){
             e.printStackTrace();
         }
-
     }
 }

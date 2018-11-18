@@ -63,7 +63,6 @@ public class ManualTranslation extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selected_orig = array_language_code[position];
-                Toast.makeText(ManualTranslation.this,selected_orig,Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -76,7 +75,6 @@ public class ManualTranslation extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selected_dest = array_language_code[position];
-                Toast.makeText(ManualTranslation.this,selected_dest,Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -117,7 +115,6 @@ public class ManualTranslation extends AppCompatActivity {
                     public void onResponse(String response) {
                         pDialog.dismiss();
                         Log.d("Respon String ",response);
-                        Toast.makeText(ManualTranslation.this,response,Toast.LENGTH_LONG).show();
                         etResult.setText(response);
                     }
                 },
