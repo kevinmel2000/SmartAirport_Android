@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -121,7 +122,7 @@ public class FragmentSignUp extends Fragment {
         int rnd = random.nextInt(999999 - 99) + 99;
         String tag_req_signin = getResources().getString(R.string.tag_req_signin);
         String url = getResources().getString(R.string.api)
-                .concat(getResources().getString(R.string.endpoint_signin))
+                .concat(getResources().getString(R.string.endpoint_signup))
                 .concat(String.valueOf(rnd))
                 .concat(getResources().getString(R.string.slash));
         final ProgressDialog pDialog = new ProgressDialog(getActivity());
@@ -179,17 +180,6 @@ public class FragmentSignUp extends Fragment {
                                 dialog.dismiss();
                             }}).show().
                         getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#3d9b2d"));
-                JSONArray jsonArrayUser = content.getJSONArray("user");
-                JSONObject objUser = jsonArrayUser.getJSONObject(0);
-                sharedPreferences = getActivity().getSharedPreferences(getResources().getString(R.string.sharedpreferences), 0);
-                editorPreferences = sharedPreferences.edit();
-                editorPreferences.putString(getResources().getString(R.string.sharedpref_user_email),objUser.getString(getResources().getString(R.string.sharedpref_user_email)));
-                editorPreferences.putString(getResources().getString(R.string.sharedpref_user_name),objUser.getString(getResources().getString(R.string.sharedpref_user_name)));
-                editorPreferences.putString(getResources().getString(R.string.sharedpref_user_phone),objUser.getString(getResources().getString(R.string.sharedpref_user_phone)));
-                editorPreferences.commit();
-                SmartAirport.user_email = objUser.getString(getResources().getString(R.string.sharedpref_user_email));
-                SmartAirport.user_name = objUser.getString(getResources().getString(R.string.sharedpref_user_name));
-                SmartAirport.user_phone = objUser.getString(getResources().getString(R.string.sharedpref_user_phone));
             }else{
                 new AlertDialog.Builder(getActivity())
                         .setTitle("Signup Failed")
@@ -202,6 +192,8 @@ public class FragmentSignUp extends Fragment {
                         getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#3d9b2d"));
             }
         }catch (JSONException e){
+            Log.d("DBUG BIJB ", e.getMessage());
+            Toast.makeText(getActivity(), e.getMessage(),Toast.LENGTH_LONG).show();
             new AlertDialog.Builder(getActivity())
                     .setTitle("Whooops . . .")
                     .setMessage("Something went wrong. Please try again!")

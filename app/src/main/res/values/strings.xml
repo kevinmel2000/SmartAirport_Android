@@ -91,6 +91,8 @@
     <string name="endpoint_booking">booking/insert/</string>
     <!--API baggage detail-->
     <string name="endpoint_signin">user/signin/</string>
+    <!--API baggage detail-->
+    <string name="endpoint_signup">user/signup/</string>
 
 
     <!--REQUEST TAG-->
